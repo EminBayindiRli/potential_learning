@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POTENTIAL Design System</title>
+
+  <!-- Google Fonts - Mulish -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- RemixIcon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+
+  <style>
+    /* ================================
+       CSS Variables - Design System
+       ================================ */
+    :root {
+      --primary-green: #5A7D3A;
+      --primary-green-light: #9BB88A;
+      --primary-green-dark: #2F4F2F;
+      --accent-green: #6B8F47;
+      --secondary-green: #A4C639;
+      --secondary-green-light: #F0F8E8;
+      --tertiary-green: #7CB518;
+      --sage-green: #8FBC8F;
+      --neutral-black: #151515;
+      --dark-gray: #333333;
+      --text-gray: #555555;
+      --light-gray: #E8F2EB;
+      --background-white: #FFFFFF;
+      --section-background: #F8FCF6;
+      --subtle-green: #F0F8F2;
+      --font-primary: 'Mulish', sans-serif;
+      --container-width: 1440px;
+      --section-padding: 100px;
+      --gutter: 32px;
+    }
+
+    [data-theme="dark"] {
+      --primary-green: #7BA352;
+      --primary-green-light: #4A6741;
+      --primary-green-dark: #5A7D3A;
+      --accent-green: #6B8F47;
+      --secondary-green: #A4C639;
+      --secondary-green-light: #F0F8E8;
+      --tertiary-green: #7CB518;
+      --sage-green: #8FBC8F;
+      --neutral-black: #F0F0F0;
+      --dark-gray: #A0A0A0;
+      --text-gray: #A0A0A0;
+      --light-gray: rgba(123, 163, 82, 0.15);
+      --background-white: #0F1A12;
+      --section-background: #1E2E23;
+      --subtle-green: #1E2E23;
+    }
+
+    /* ================================
+       Base Styles
+       ================================ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-primary);
+      background: var(--background-white);
+      color: var(--neutral-black);
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* ================================
+       Layout
+       ================================ */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--background-white);
+      border-bottom: 1px solid var(--light-gray);
+      padding: 16px 0;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary-green);
+    }
+
+    .header-subtitle {
+      font-size: 14px;
+      color: var(--text-gray);
+      margin-left: 12px;
+    }
+
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border: 1px solid var(--light-gray);
+      border-radius: 8px;
+      background: var(--section-background);
+      color: var(--neutral-black);
+      font-family: var(--font-primary);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--primary-green);
+    }
+
+    .theme-toggle i {
+      font-size: 16px;
+    }
+
+    .nav {
+      background: var(--section-background);
+      border-bottom: 1px solid var(--light-gray);
+      padding: 12px 0;
+      overflow-x: auto;
+      transition: background 0.3s;
+    }
+
+    .nav .container {
+      display: flex;
+      gap: 8px;
+      flex-wrap: nowrap;
+    }
+
+    .nav a {
+      white-space: nowrap;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-gray);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .nav a:hover {
+      background: var(--light-gray);
+      color: var(--neutral-black);
+    }
+
+    section {
+      padding: 60px 0;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .section-title {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--neutral-black);
+      margin-bottom: 8px;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-gray);
+      margin-bottom: 40px;
+      max-width: 600px;
+    }
+
+    .subsection-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--neutral-black);
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .subsection-title:first-of-type {
+      margin-top: 0;
+    }
+
+    /* ================================
+       Color Swatches
+       ================================ */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 16px;
+    }
+
+    .color-swatch {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--light-gray);
+      background: var(--background-white);
+      transition: border-color 0.3s;
+    }
+
+    .color-swatch-preview {
+      height: 80px;
+      width: 100%;
+    }
+
+    .color-swatch-info {
+      padding: 10px 12px;
+    }
+
+    .color-swatch-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--neutral-black);
+      margin-bottom: 2px;
+    }
+
+    .color-swatch-hex {
+      font-size: 12px;
+      color: var(--text-gray);
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ================================
+       Typography Samples
+       ================================ */
+    .type-sample {
+      margin-bottom: 24px;
+      padding: 16px 20px;
+      border-radius: 12px;
+      background: var(--section-background);
+      transition: background 0.3s;
+    }
+
+    .type-sample-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .type-sample-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--primary-green);
+      background: rgba(90,125,58,0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .type-sample-spec {
+      font-size: 12px;
+      color: var(--text-gray);
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ================================
+       Spacing Demo
+       ================================ */
+    .spacing-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: flex-end;
+    }
+
+    .spacing-item {
+      text-align: center;
+    }
+
+    .spacing-box {
+      background: var(--primary-green);
+      border-radius: 4px;
+      margin-bottom: 8px;
+      opacity: 0.8;
+    }
+
+    .spacing-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-gray);
+    }
+
+    .spacing-value {
+      font-size: 10px;
+      color: var(--text-gray);
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ================================
+       Border Radius Demo
+       ================================ */
+    .radius-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .radius-item {
+      text-align: center;
+    }
+
+    .radius-box {
+      width: 64px;
+      height: 64px;
+      background: var(--subtle-green);
+      border: 2px solid var(--primary-green);
+      margin-bottom: 8px;
+    }
+
+    .radius-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-gray);
+    }
+
+    .radius-value {
+      font-size: 10px;
+      color: var(--text-gray);
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ================================
+       Shadow Demo
+       ================================ */
+    .shadow-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .shadow-item {
+      text-align: center;
+    }
+
+    .shadow-box {
+      width: 120px;
+      height: 80px;
+      background: var(--background-white);
+      border-radius: 12px;
+      border: 1px solid var(--light-gray);
+      margin-bottom: 8px;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .shadow-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-gray);
+    }
+
+    /* ================================
+       Button Demos
+       ================================ */
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-primary);
+      font-weight: 500;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+      text-decoration: none;
+    }
+
+    .btn:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(90,125,58,0.2);
+    }
+
+    /* Sizes */
+    .btn-sm { padding: 8px 12px; font-size: 14px; min-height: 32px; }
+    .btn-md { padding: 10px 16px; font-size: 16px; min-height: 40px; }
+    .btn-lg { padding: 12px 24px; font-size: 18px; min-height: 48px; }
+
+    /* Primary */
+    .btn-primary {
+      background: #5A7D3A;
+      color: #FFFFFF;
+      border-color: #5A7D3A;
+    }
+    .btn-primary:hover { background: #4A6B2E; border-color: #4A6B2E; }
+
+    [data-theme="dark"] .btn-primary {
+      background: #7BA352;
+      border-color: #7BA352;
+    }
+    [data-theme="dark"] .btn-primary:hover { background: #6B9347; border-color: #6B9347; }
+
+    /* Secondary */
+    .btn-secondary {
+      background: var(--background-white);
+      color: #5A7D3A;
+      border-color: #5A7D3A;
+    }
+    .btn-secondary:hover { background: rgba(90,125,58,0.1); }
+
+    [data-theme="dark"] .btn-secondary {
+      background: #1E2E23;
+      color: #7BA352;
+      border-color: #7BA352;
+    }
+
+    /* Ghost */
+    .btn-ghost {
+      background: transparent;
+      color: #5A7D3A;
+      border-color: transparent;
+    }
+    .btn-ghost:hover { background: rgba(90,125,58,0.1); }
+
+    [data-theme="dark"] .btn-ghost { color: #7BA352; }
+
+    /* Danger */
+    .btn-danger {
+      background: #DC2626;
+      color: #FFFFFF;
+      border-color: #DC2626;
+    }
+    .btn-danger:hover { background: #B91C1C; border-color: #B91C1C; }
+
+    /* Disabled */
+    .btn-disabled {
+      background: #D1D5DB;
+      color: #9CA3AF;
+      border-color: #D1D5DB;
+      cursor: not-allowed;
+    }
+
+    [data-theme="dark"] .btn-disabled {
+      background: rgba(123,163,82,0.15);
+      color: #6B7280;
+      border-color: rgba(123,163,82,0.15);
+    }
+
+    /* ================================
+       Form Elements
+       ================================ */
+    .form-demo {
+      max-width: 400px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--dark-gray);
+      margin-bottom: 6px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #D1D5DB;
+      border-radius: 16px;
+      font-size: 14px;
+      font-family: var(--font-primary);
+      background: var(--background-white);
+      color: var(--neutral-black);
+      transition: all 0.2s;
+    }
+
+    .form-input:hover { border-color: #9CA3AF; }
+    .form-input:focus { border-color: var(--primary-green); box-shadow: 0 0 0 2px rgba(90,125,58,0.2); outline: none; }
+
+    [data-theme="dark"] .form-input {
+      background: #0F1A12;
+      color: #F0F0F0;
+      border-color: rgba(123,163,82,0.15);
+    }
+    [data-theme="dark"] .form-input:hover { border-color: rgba(123,163,82,0.3); }
+    [data-theme="dark"] .form-input:focus { border-color: #7BA352; }
+
+    .form-input-error {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 2px rgba(239,68,68,0.2);
+    }
+    .form-input-error:focus { border-color: #ef4444; box-shadow: 0 0 0 2px rgba(239,68,68,0.2); }
+
+    .form-error-text {
+      font-size: 14px;
+      color: #DC2626;
+      margin-top: 4px;
+    }
+
+    .form-helper-text {
+      font-size: 14px;
+      color: #6B7280;
+      margin-top: 4px;
+    }
+
+    .form-input-icon-wrapper {
+      position: relative;
+    }
+
+    .form-input-icon-wrapper .form-input {
+      padding-left: 40px;
+    }
+
+    .form-input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-gray);
+      font-size: 16px;
+    }
+
+    /* Checkbox */
+    .checkbox-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .checkbox-box {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #D1D5DB;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .checkbox-box.checked {
+      background: var(--primary-green);
+      border-color: var(--primary-green);
+    }
+
+    .checkbox-box.checked i { color: #FFFFFF; font-size: 12px; }
+
+    .checkbox-label {
+      font-size: 14px;
+      color: var(--neutral-black);
+    }
+
+    [data-theme="dark"] .checkbox-box {
+      border-color: rgba(123,163,82,0.15);
+    }
+
+    /* ================================
+       Card Demos
+       ================================ */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: linear-gradient(to bottom right, var(--background-white), var(--section-background));
+      border: 1px solid var(--light-gray);
+      border-radius: 20px;
+      padding: 12px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      transition: all 0.3s;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+    }
+
+    [data-theme="dark"] .card {
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+    [data-theme="dark"] .card:hover {
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+
+    .card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--primary-green);
+      background: linear-gradient(to bottom right, rgba(90,125,58,0.12), rgba(90,125,58,0.06));
+      border: 1px solid rgba(90,125,58,0.15);
+      margin-bottom: 10px;
+    }
+
+    .card-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--neutral-black);
+      line-height: 1;
+      letter-spacing: -0.025em;
+      margin-bottom: 4px;
+    }
+
+    .card-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-gray);
+    }
+
+    .card-section {
+      background: linear-gradient(to bottom right, var(--background-white), var(--section-background));
+      border: 1px solid var(--light-gray);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      transition: all 0.3s;
+    }
+
+    [data-theme="dark"] .card-section {
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .card-section-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--neutral-black);
+      margin-bottom: 8px;
+    }
+
+    .card-section-text {
+      font-size: 14px;
+      color: var(--text-gray);
+      line-height: 1.6;
+    }
+
+    /* ================================
+       Badge Demos
+       ================================ */
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .badge {
+      font-size: 13px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-high { background: rgba(239,68,68,0.1); color: #ef4444; }
+    .badge-medium { background: rgba(245,158,11,0.1); color: #ca8a04; }
+    .badge-low { background: rgba(16,185,129,0.1); color: #10b981; }
+    .badge-info { background: rgba(59,130,246,0.1); color: #3b82f6; }
+
+    .badge-datasource {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: #FFFBEB;
+      border: 1px solid #FDE68A;
+      color: #B45309;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    [data-theme="dark"] .badge-datasource {
+      background: rgba(245,158,11,0.15);
+      border-color: rgba(245,158,11,0.3);
+      color: #FCD34D;
+    }
+
+    /* Status dots */
+    .status-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--neutral-black);
+    }
+
+    .status-dot::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .status-dot.online::before { background: #22c55e; }
+    .status-dot.warning::before { background: #f59e0b; }
+    .status-dot.error::before { background: #ef4444; }
+    .status-dot.offline::before { background: #6B7280; }
+
+    /* ================================
+       Toast Demos
+       ================================ */
+    .toast-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-width: 384px;
+    }
+
+    .toast {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--light-gray);
+      background: var(--subtle-green);
+      color: var(--neutral-black);
+      font-size: 14px;
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    [data-theme="dark"] .toast {
+      background: #1E2E23;
+      border-color: rgba(123,163,82,0.2);
+    }
+
+    .toast-icon { font-size: 18px; flex-shrink: 0; }
+    .toast-icon.success { color: #22c55e; }
+    .toast-icon.error { color: #ef4444; }
+    .toast-icon.warning { color: #eab308; }
+    .toast-icon.info { color: #3b82f6; }
+
+    .toast-dismiss {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: var(--text-gray);
+      cursor: pointer;
+      padding: 4px;
+      font-size: 16px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+
+    .toast-dismiss:hover { background: rgba(0,0,0,0.05); }
+    [data-theme="dark"] .toast-dismiss:hover { background: rgba(255,255,255,0.05); }
+
+    /* ================================
+       Icon Demo
+       ================================ */
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+    }
+
+    .icon-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: var(--section-background);
+      font-size: 13px;
+      color: var(--text-gray);
+      transition: background 0.3s;
+    }
+
+    .icon-item i {
+      font-size: 20px;
+      color: var(--primary-green);
+      width: 24px;
+      text-align: center;
+    }
+
+    /* ================================
+       CSS Variables Table
+       ================================ */
+    .var-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .var-table th {
+      text-align: left;
+      padding: 10px 16px;
+      border-bottom: 2px solid var(--light-gray);
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-gray);
+    }
+
+    .var-table td {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--light-gray);
+      color: var(--neutral-black);
+      vertical-align: middle;
+    }
+
+    .var-table tr:hover td {
+      background: var(--section-background);
+    }
+
+    .var-table code {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      background: rgba(90,125,58,0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--primary-green);
+    }
+
+    .var-table .color-dot {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      vertical-align: middle;
+      margin-right: 8px;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    /* ================================
+       Responsive
+       ================================ */
+    @media (max-width: 768px) {
+      :root {
+        --gutter: 16px;
+      }
+
+      section { padding: 40px 0; }
+      .section-title { font-size: 24px; }
+      .section-desc { font-size: 14px; }
+      .color-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+      .card-grid { grid-template-columns: 1fr; }
+      .icon-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+
+      .header-subtitle { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div style="display:flex;align-items:center;">
+        <span class="header-title">POTENTIAL</span>
+        <span class="header-subtitle">Design System</span>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <i id="theme-icon" class="ri-moon-line"></i>
+        <span id="theme-label">Dark Mode</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container">
+      <a href="#colors">Colors</a>
+      <a href="#typography">Typography</a>
+      <a href="#spacing">Spacing</a>
+      <a href="#radius">Border Radius</a>
+      <a href="#shadows">Shadows</a>
+      <a href="#buttons">Buttons</a>
+      <a href="#forms">Forms</a>
+      <a href="#cards">Cards</a>
+      <a href="#badges">Badges</a>
+      <a href="#toasts">Toasts</a>
+      <a href="#icons">Icons</a>
+      <a href="#variables">CSS Variables</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ================================
+         COLORS
+         ================================ -->
+    <section id="colors">
+      <div class="container">
+        <h2 class="section-title">Color Palette</h2>
+        <p class="section-desc">Green-based, agriculture-inspired color system. Toggle dark mode to see the dark theme equivalents.</p>
+
+        <h3 class="subsection-title">Primary Greens</h3>
+        <div class="color-grid">
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#5A7D3A;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Primary Green</div>
+              <div class="color-swatch-hex">#5A7D3A <span style="color:#999;">/ dark: #7BA352</span></div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#9BB88A;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Primary Light</div>
+              <div class="color-swatch-hex">#9BB88A <span style="color:#999;">/ dark: #4A6741</span></div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#2F4F2F;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Primary Dark</div>
+              <div class="color-swatch-hex">#2F4F2F <span style="color:#999;">/ dark: #5A7D3A</span></div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#6B8F47;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Accent Green</div>
+              <div class="color-swatch-hex">#6B8F47</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#A4C639;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Secondary Green</div>
+              <div class="color-swatch-hex">#A4C639</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#F0F8E8;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Secondary Light</div>
+              <div class="color-swatch-hex">#F0F8E8</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#7CB518;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Tertiary Green</div>
+              <div class="color-swatch-hex">#7CB518</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#8FBC8F;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Sage Green</div>
+              <div class="color-swatch-hex">#8FBC8F</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Neutrals</h3>
+        <div class="color-grid">
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#151515;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Neutral Black</div>
+              <div class="color-swatch-hex">#151515 <span style="color:#999;">/ dark: #F0F0F0</span></div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#333333;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Dark Gray</div>
+              <div class="color-swatch-hex">#333333 <span style="color:#999;">/ dark: #A0A0A0</span></div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#555555;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Text Gray</div>
+              <div class="color-swatch-hex">#555555 <span style="color:#999;">/ dark: #A0A0A0</span></div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#E8F2EB;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Light Gray</div>
+              <div class="color-swatch-hex">#E8F2EB</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#FFFFFF; border: 1px solid #eee;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Background</div>
+              <div class="color-swatch-hex">#FFFFFF <span style="color:#999;">/ dark: #0F1A12</span></div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#F8FCF6;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Section BG</div>
+              <div class="color-swatch-hex">#F8FCF6 <span style="color:#999;">/ dark: #1E2E23</span></div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#F0F8F2;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Subtle Green</div>
+              <div class="color-swatch-hex">#F0F8F2 <span style="color:#999;">/ dark: #1E2E23</span></div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Semantic / Status Colors</h3>
+        <div class="color-grid">
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#ef4444;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Error / High</div>
+              <div class="color-swatch-hex">#ef4444</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#f59e0b;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Warning / Medium</div>
+              <div class="color-swatch-hex">#f59e0b</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#10b981;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Success / Low</div>
+              <div class="color-swatch-hex">#10b981</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#3b82f6;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Info</div>
+              <div class="color-swatch-hex">#3b82f6</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Dark Mode Backgrounds</h3>
+        <div class="color-grid">
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#0F1A12;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Dark BG Primary</div>
+              <div class="color-swatch-hex">#0F1A12</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#1E2E23;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Dark BG Secondary</div>
+              <div class="color-swatch-hex">#1E2E23</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#162119;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Dark Sidebar</div>
+              <div class="color-swatch-hex">#162119</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#F0F0F0;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Dark Text Primary</div>
+              <div class="color-swatch-hex">#F0F0F0</div>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-preview" style="background:#A0A0A0;"></div>
+            <div class="color-swatch-info">
+              <div class="color-swatch-name">Dark Text Secondary</div>
+              <div class="color-swatch-hex">#A0A0A0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+         TYPOGRAPHY
+         ================================ -->
+    <section id="typography">
+      <div class="container">
+        <h2 class="section-title">Typography</h2>
+        <p class="section-desc">Mulish is used exclusively. Loaded from Google Fonts with weights 200-900.</p>
+
+        <h3 class="subsection-title">Heading Scale</h3>
+
+        <div class="type-sample">
+          <div class="type-sample-meta">
+            <span class="type-sample-label">heading-1</span>
+            <span class="type-sample-spec">72px / bold / line-height: 1.1</span>
+          </div>
+          <div style="font-size:72px;font-weight:700;line-height:1.1;letter-spacing:-0.025em;">Precision Agriculture</div>
+        </div>
+
+        <div class="type-sample">
+          <div class="type-sample-meta">
+            <span class="type-sample-label">heading-2</span>
+            <span class="type-sample-spec">60px / bold / line-height: 1.1</span>
+          </div>
+          <div style="font-size:60px;font-weight:700;line-height:1.1;">Smart Farming</div>
+        </div>
+
+        <div class="type-sample">
+          <div class="type-sample-meta">
+            <span class="type-sample-label">heading-3</span>
+            <span class="type-sample-spec">48px / semibold / line-height: 1.2</span>
+          </div>
+          <div style="font-size:48px;font-weight:600;line-height:1.2;">IoT Device Monitoring</div>
+        </div>
+
+        <div class="type-sample">
+          <div class="type-sample-meta">
+            <span class="type-sample-label">heading-4</span>
+            <span class="type-sample-spec">36px / semibold / line-height: 1.2</span>
+          </div>
+          <div style="font-size:36px;font-weight:600;line-height:1.2;">Soil & Plant Health</div>
+        </div>
+
+        <div class="type-sample">
+          <div class="type-sample-meta">
+            <span class="type-sample-label">heading-5</span>
+            <span class="type-sample-spec">30px / semibold / line-height: 1.3</span>
+          </div>
+          <div style="font-size:30px;font-weight:600;line-height:1.3;">Environmental Data</div>
+        </div>
+
+        <div class="type-sample">
+          <div class="type-sample-meta">
+            <span class="type-sample-label">heading-6</span>
+            <span class="type-sample-spec">24px / semibold / line-height: 1.3</span>
+          </div>
+          <div style="font-size:24px;font-weight:600;line-height:1.3;">Pest Detection Summary</div>
+        </div>
+
+        <h3 class="subsection-title">Paragraph Scale</h3>
+
+        <div class="type-sample">
+          <div class="type-sample-meta">
+            <span class="type-sample-label">p1-semibold</span>
+            <span class="type-sample-spec">20px / semibold / line-height: 1.5</span>
+          </div>
+          <div style="font-size:20px;font-weight:600;line-height:1.5;">Card header text and emphasized paragraphs</div>
+        </div>
+
+        <div class="type-sample">
+          <div class="type-sample-meta">
+            <span class="type-sample-label">p2-regular</span>
+            <span class="type-sample-spec">18px / regular / line-height: 1.6</span>
+          </div>
+          <div style="font-size:18px;font-weight:400;line-height:1.6;">Large body text for introductions and feature descriptions</div>
+        </div>
+
+        <div class="type-sample">
+          <div class="type-sample-meta">
+            <span class="type-sample-label">p3-regular</span>
+            <span class="type-sample-spec">16px / regular / line-height: 1.6</span>
+          </div>
+          <div style="font-size:16px;font-weight:400;line-height:1.6;">Standard body text used for most content. This is the default paragraph size throughout the application.</div>
+        </div>
+
+        <div class="type-sample">
+          <div class="type-sample-meta">
+            <span class="type-sample-label">p4-regular</span>
+            <span class="type-sample-spec">14px / regular / line-height: 1.5</span>
+          </div>
+          <div style="font-size:14px;font-weight:400;line-height:1.5;">Small text for form inputs, table cells, secondary information, and helper text</div>
+        </div>
+
+        <div class="type-sample">
+          <div class="type-sample-meta">
+            <span class="type-sample-label">p5-semibold</span>
+            <span class="type-sample-spec">12px / semibold / line-height: 1.4 / uppercase / tracking: wider</span>
+          </div>
+          <div style="font-size:12px;font-weight:600;line-height:1.4;text-transform:uppercase;letter-spacing:0.05em;">Caption &middot; Overline &middot; Metric Label</div>
+        </div>
+
+        <h3 class="subsection-title">Font Weights</h3>
+        <div class="type-sample">
+          <div style="font-size:18px;line-height:2;">
+            <div style="font-weight:300;">Light (300) - Dekoratif basliklar</div>
+            <div style="font-weight:400;">Regular (400) - Govde metni</div>
+            <div style="font-weight:500;">Medium (500) - Vurgulu govde, form label</div>
+            <div style="font-weight:600;">Semibold (600) - Card basliklari, buton metni</div>
+            <div style="font-weight:700;">Bold (700) - Sayfa basliklari, buyuk degerler</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+         SPACING
+         ================================ -->
+    <section id="spacing">
+      <div class="container">
+        <h2 class="section-title">Spacing</h2>
+        <p class="section-desc">4px base grid. All spacing values are multiples of 4.</p>
+
+        <div class="spacing-grid">
+          <div class="spacing-item">
+            <div class="spacing-box" style="width:32px;height:4px;"></div>
+            <div class="spacing-label">1</div>
+            <div class="spacing-value">4px</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-box" style="width:32px;height:8px;"></div>
+            <div class="spacing-label">2</div>
+            <div class="spacing-value">8px</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-box" style="width:32px;height:12px;"></div>
+            <div class="spacing-label">3</div>
+            <div class="spacing-value">12px</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-box" style="width:32px;height:16px;"></div>
+            <div class="spacing-label">4</div>
+            <div class="spacing-value">16px</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-box" style="width:32px;height:20px;"></div>
+            <div class="spacing-label">5</div>
+            <div class="spacing-value">20px</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-box" style="width:32px;height:24px;"></div>
+            <div class="spacing-label">6</div>
+            <div class="spacing-value">24px</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-box" style="width:32px;height:32px;"></div>
+            <div class="spacing-label">8 (gutter)</div>
+            <div class="spacing-value">32px</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-box" style="width:32px;height:40px;"></div>
+            <div class="spacing-label">10</div>
+            <div class="spacing-value">40px</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-box" style="width:32px;height:48px;"></div>
+            <div class="spacing-label">12</div>
+            <div class="spacing-value">48px</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-box" style="width:32px;height:64px;"></div>
+            <div class="spacing-label">16</div>
+            <div class="spacing-value">64px</div>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Layout Tokens</h3>
+        <table class="var-table">
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Value</th>
+              <th>Responsive</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>--container-width</code></td>
+              <td>1440px</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><code>--section-padding</code></td>
+              <td>100px</td>
+              <td>Tablet: 80px, Mobile: 60px, Small: 40px</td>
+            </tr>
+            <tr>
+              <td><code>--gutter</code></td>
+              <td>32px</td>
+              <td>Mobile: 16px</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 class="subsection-title">Breakpoints</h3>
+        <table class="var-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Min Width</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>sm</td><td>640px</td><td>Tablet</td></tr>
+            <tr><td>md</td><td>768px</td><td>Tablet landscape</td></tr>
+            <tr><td>lg</td><td>1024px</td><td>Small desktop</td></tr>
+            <tr><td>xl</td><td>1200px</td><td>Desktop</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================================
+         BORDER RADIUS
+         ================================ -->
+    <section id="radius">
+      <div class="container">
+        <h2 class="section-title">Border Radius</h2>
+        <p class="section-desc">Consistent rounding scale from sharp to fully rounded.</p>
+
+        <div class="radius-grid">
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:0px;"></div>
+            <div class="radius-label">none</div>
+            <div class="radius-value">0px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:4px;"></div>
+            <div class="radius-label">sm</div>
+            <div class="radius-value">4px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:8px;"></div>
+            <div class="radius-label">default / button</div>
+            <div class="radius-value">8px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:12px;"></div>
+            <div class="radius-label">md / card</div>
+            <div class="radius-value">12px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:16px;"></div>
+            <div class="radius-label">lg</div>
+            <div class="radius-value">16px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:20px;"></div>
+            <div class="radius-label">xl</div>
+            <div class="radius-value">20px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:24px;"></div>
+            <div class="radius-label">2xl</div>
+            <div class="radius-value">24px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:32px;"></div>
+            <div class="radius-label">3xl</div>
+            <div class="radius-value">32px</div>
+          </div>
+          <div class="radius-item">
+            <div class="radius-box" style="border-radius:9999px;"></div>
+            <div class="radius-label">full</div>
+            <div class="radius-value">9999px</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+         SHADOWS
+         ================================ -->
+    <section id="shadows">
+      <div class="container">
+        <h2 class="section-title">Shadows</h2>
+        <p class="section-desc">Subtle elevation system. Dark mode uses stronger shadows with higher opacity.</p>
+
+        <div class="shadow-grid">
+          <div class="shadow-item">
+            <div class="shadow-box" style="box-shadow:none;"></div>
+            <div class="shadow-label">none</div>
+          </div>
+          <div class="shadow-item">
+            <div class="shadow-box" style="box-shadow:0 1px 2px rgba(0,0,0,0.05);"></div>
+            <div class="shadow-label">sm (card default)</div>
+          </div>
+          <div class="shadow-item">
+            <div class="shadow-box" style="box-shadow:0 4px 6px rgba(0,0,0,0.07);"></div>
+            <div class="shadow-label">md (hover)</div>
+          </div>
+          <div class="shadow-item">
+            <div class="shadow-box" style="box-shadow:0 10px 15px rgba(0,0,0,0.1);"></div>
+            <div class="shadow-label">lg (modal/toast)</div>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Dark Mode Shadows</h3>
+        <div class="shadow-grid">
+          <div class="shadow-item">
+            <div class="shadow-box" style="background:#0F1A12;border-color:#1E2E23;box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div>
+            <div class="shadow-label">dark sm</div>
+          </div>
+          <div class="shadow-item">
+            <div class="shadow-box" style="background:#0F1A12;border-color:#1E2E23;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>
+            <div class="shadow-label">dark md (hover)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+         BUTTONS
+         ================================ -->
+    <section id="buttons">
+      <div class="container">
+        <h2 class="section-title">Buttons</h2>
+        <p class="section-desc">4 variants (primary, secondary, ghost, danger) x 3 sizes (sm, md, lg).</p>
+
+        <h3 class="subsection-title">Variants</h3>
+        <div class="button-row">
+          <button class="btn btn-md btn-primary">Primary</button>
+          <button class="btn btn-md btn-secondary">Secondary</button>
+          <button class="btn btn-md btn-ghost">Ghost</button>
+          <button class="btn btn-md btn-danger">Danger</button>
+          <button class="btn btn-md btn-disabled" disabled>Disabled</button>
+        </div>
+
+        <h3 class="subsection-title">Sizes</h3>
+        <div class="button-row">
+          <button class="btn btn-sm btn-primary">Small</button>
+          <button class="btn btn-md btn-primary">Medium</button>
+          <button class="btn btn-lg btn-primary">Large</button>
+        </div>
+
+        <h3 class="subsection-title">With Icons</h3>
+        <div class="button-row">
+          <button class="btn btn-md btn-primary"><i class="ri-add-line"></i> Add Device</button>
+          <button class="btn btn-md btn-secondary"><i class="ri-download-line"></i> Export</button>
+          <button class="btn btn-md btn-danger"><i class="ri-delete-bin-line"></i> Delete</button>
+          <button class="btn btn-md btn-ghost"><i class="ri-refresh-line"></i> Refresh</button>
+        </div>
+
+        <h3 class="subsection-title">Focus State</h3>
+        <p style="font-size:14px;color:var(--text-gray);margin-bottom:12px;">Tab into buttons to see the focus ring: <code style="font-family:monospace;background:rgba(90,125,58,0.08);padding:2px 6px;border-radius:4px;">box-shadow: 0 0 0 2px rgba(90,125,58,0.2)</code></p>
+        <div class="button-row">
+          <button class="btn btn-md btn-primary" style="box-shadow: 0 0 0 2px rgba(90,125,58,0.2);">Focused State</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+         FORMS
+         ================================ -->
+    <section id="forms">
+      <div class="container">
+        <h2 class="section-title">Form Elements</h2>
+        <p class="section-desc">Input, checkbox, and form pattern examples.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;">
+          <div class="form-demo">
+            <h3 class="subsection-title">Default Input</h3>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-input" placeholder="farmer@example.com">
+              <div class="form-helper-text">Enter your registered email</div>
+            </div>
+
+            <h3 class="subsection-title">Input with Icon</h3>
+            <div class="form-group">
+              <label class="form-label">Search</label>
+              <div class="form-input-icon-wrapper">
+                <i class="ri-search-line form-input-icon"></i>
+                <input type="text" class="form-input" placeholder="Search devices...">
+              </div>
+            </div>
+
+            <h3 class="subsection-title">Error State</h3>
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-input form-input-error" value="123">
+              <div class="form-error-text">Password must be at least 8 characters</div>
+            </div>
+
+            <h3 class="subsection-title">Disabled Input</h3>
+            <div class="form-group">
+              <label class="form-label">Device Serial</label>
+              <input type="text" class="form-input" value="DEV-2024-001" disabled style="background:#F9FAFB;color:#6B7280;cursor:not-allowed;">
+            </div>
+          </div>
+
+          <div>
+            <h3 class="subsection-title">Checkboxes</h3>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div class="checkbox-wrapper">
+                <div class="checkbox-box checked"><i class="ri-check-line"></i></div>
+                <span class="checkbox-label">Remember me</span>
+              </div>
+              <div class="checkbox-wrapper">
+                <div class="checkbox-box"></div>
+                <span class="checkbox-label">Send notifications</span>
+              </div>
+              <div class="checkbox-wrapper" style="opacity:0.5;">
+                <div class="checkbox-box checked"><i class="ri-check-line"></i></div>
+                <span class="checkbox-label">Required (disabled)</span>
+              </div>
+            </div>
+
+            <h3 class="subsection-title">Form Specs</h3>
+            <table class="var-table" style="margin-top:16px;">
+              <thead>
+                <tr><th>Property</th><th>Value</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Input padding</td><td><code>12px 16px</code></td></tr>
+                <tr><td>Input border-radius</td><td><code>16px</code></td></tr>
+                <tr><td>Input border</td><td><code>1px solid #D1D5DB</code></td></tr>
+                <tr><td>Focus ring</td><td><code>0 0 0 2px rgba(90,125,58,0.2)</code></td></tr>
+                <tr><td>Error ring</td><td><code>0 0 0 2px rgba(239,68,68,0.2)</code></td></tr>
+                <tr><td>Label size</td><td><code>14px / weight 500</code></td></tr>
+                <tr><td>Checkbox size</td><td><code>20px x 20px</code></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+         CARDS
+         ================================ -->
+    <section id="cards">
+      <div class="container">
+        <h2 class="section-title">Cards</h2>
+        <p class="section-desc">Card patterns used for metrics, content sections, and features.</p>
+
+        <h3 class="subsection-title">Metric Cards</h3>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-icon"><i class="ri-temp-hot-line"></i></div>
+            <div class="card-value">24.5 &deg;C</div>
+            <div class="card-label">Temperature</div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="ri-drop-line"></i></div>
+            <div class="card-value">67%</div>
+            <div class="card-label">Humidity</div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="ri-plant-line"></i></div>
+            <div class="card-value">6.8</div>
+            <div class="card-label">Soil pH</div>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="ri-sun-line"></i></div>
+            <div class="card-value">850 lux</div>
+            <div class="card-label">Light Intensity</div>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Section Card</h3>
+        <div style="max-width:500px;">
+          <div class="card-section">
+            <div class="card-section-title"><i class="ri-information-line" style="color:var(--primary-green);margin-right:8px;"></i>Device Information</div>
+            <div class="card-section-text">This section card pattern is used for grouping related content within dashboard pages. It has a 12px border-radius with subtle shadow.</div>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Card Specs</h3>
+        <table class="var-table" style="max-width:600px;margin-top:16px;">
+          <thead>
+            <tr><th>Property</th><th>Metric Card</th><th>Section Card</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Border Radius</td><td><code>20px</code></td><td><code>12px</code></td></tr>
+            <tr><td>Padding</td><td><code>12px</code></td><td><code>20px</code></td></tr>
+            <tr><td>Background</td><td>gradient: white to #F8FCF6</td><td>gradient: white to #F8FCF6</td></tr>
+            <tr><td>Border</td><td><code>1px solid #E8F2EB</code></td><td><code>1px solid #E8F2EB</code></td></tr>
+            <tr><td>Shadow</td><td><code>shadow-sm</code></td><td><code>shadow-sm</code></td></tr>
+            <tr><td>Hover Shadow</td><td><code>shadow-md</code></td><td><code>shadow-md</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================================
+         BADGES
+         ================================ -->
+    <section id="badges">
+      <div class="container">
+        <h2 class="section-title">Badges & Status</h2>
+        <p class="section-desc">Threat level badges, status indicators, and data source badges.</p>
+
+        <h3 class="subsection-title">Threat Level Badges</h3>
+        <div class="badge-row">
+          <span class="badge badge-high"><i class="ri-alert-fill"></i> High Threat</span>
+          <span class="badge badge-medium"><i class="ri-error-warning-fill"></i> Medium Threat</span>
+          <span class="badge badge-low"><i class="ri-shield-check-fill"></i> Low Threat</span>
+          <span class="badge badge-info"><i class="ri-information-fill"></i> Info</span>
+        </div>
+
+        <h3 class="subsection-title">Status Indicators</h3>
+        <div style="display:flex;flex-wrap:wrap;gap:24px;margin-top:8px;">
+          <span class="status-dot online">Online</span>
+          <span class="status-dot warning">Warning</span>
+          <span class="status-dot error">Error</span>
+          <span class="status-dot offline">Offline</span>
+        </div>
+
+        <h3 class="subsection-title">Data Source Badge</h3>
+        <div class="badge-row">
+          <span class="badge-datasource"><i class="ri-information-line"></i> Simulated Data</span>
+        </div>
+
+        <h3 class="subsection-title">Badge Specs</h3>
+        <table class="var-table" style="max-width:600px;margin-top:16px;">
+          <thead>
+            <tr><th>Property</th><th>Value</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Border Radius</td><td><code>9999px</code> (pill shape)</td></tr>
+            <tr><td>Padding</td><td><code>4px 12px</code></td></tr>
+            <tr><td>Font Size</td><td><code>13px</code></td></tr>
+            <tr><td>Font Weight</td><td><code>500</code></td></tr>
+            <tr><td>Background Opacity</td><td>10% of the status color</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================================
+         TOASTS
+         ================================ -->
+    <section id="toasts">
+      <div class="container">
+        <h2 class="section-title">Toast Notifications</h2>
+        <p class="section-desc">4 types: success, error, warning, info. Fixed position top-right, max-width 384px.</p>
+
+        <div class="toast-stack">
+          <div class="toast">
+            <i class="ri-check-circle-fill toast-icon success"></i>
+            <span>Settings saved successfully</span>
+            <button class="toast-dismiss"><i class="ri-close-line"></i></button>
+          </div>
+          <div class="toast">
+            <i class="ri-error-warning-fill toast-icon error"></i>
+            <span>Failed to fetch device data</span>
+            <button class="toast-dismiss"><i class="ri-close-line"></i></button>
+          </div>
+          <div class="toast">
+            <i class="ri-alert-fill toast-icon warning"></i>
+            <span>Device battery is running low</span>
+            <button class="toast-dismiss"><i class="ri-close-line"></i></button>
+          </div>
+          <div class="toast">
+            <i class="ri-information-fill toast-icon info"></i>
+            <span>New firmware update available</span>
+            <button class="toast-dismiss"><i class="ri-close-line"></i></button>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Toast Specs</h3>
+        <table class="var-table" style="max-width:600px;margin-top:16px;">
+          <thead>
+            <tr><th>Property</th><th>Value</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Padding</td><td><code>12px 16px</code></td></tr>
+            <tr><td>Border Radius</td><td><code>16px</code></td></tr>
+            <tr><td>Background (light)</td><td><code>#F0F8F2</code></td></tr>
+            <tr><td>Background (dark)</td><td><code>#1E2E23</code></td></tr>
+            <tr><td>Border</td><td><code>1px solid #E8F2EB</code></td></tr>
+            <tr><td>Shadow</td><td><code>0 10px 15px rgba(0,0,0,0.1)</code></td></tr>
+            <tr><td>Container z-index</td><td><code>9999</code></td></tr>
+            <tr><td>Max width</td><td><code>384px</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================================
+         ICONS
+         ================================ -->
+    <section id="icons">
+      <div class="container">
+        <h2 class="section-title">Icon System</h2>
+        <p class="section-desc">RemixIcon v4.6.0 via CDN. Full catalog at <a href="https://remixicon.com/" target="_blank" style="color:var(--primary-green);">remixicon.com</a></p>
+
+        <h3 class="subsection-title">Frequently Used</h3>
+        <div class="icon-grid">
+          <div class="icon-item"><i class="ri-arrow-left-line"></i> arrow-left</div>
+          <div class="icon-item"><i class="ri-arrow-right-line"></i> arrow-right</div>
+          <div class="icon-item"><i class="ri-menu-line"></i> menu</div>
+          <div class="icon-item"><i class="ri-close-line"></i> close</div>
+          <div class="icon-item"><i class="ri-search-line"></i> search</div>
+          <div class="icon-item"><i class="ri-filter-line"></i> filter</div>
+          <div class="icon-item"><i class="ri-download-line"></i> download</div>
+          <div class="icon-item"><i class="ri-refresh-line"></i> refresh</div>
+          <div class="icon-item"><i class="ri-check-circle-fill"></i> check-circle</div>
+          <div class="icon-item"><i class="ri-error-warning-fill"></i> error-warning</div>
+          <div class="icon-item"><i class="ri-alert-fill"></i> alert</div>
+          <div class="icon-item"><i class="ri-information-fill"></i> information</div>
+          <div class="icon-item"><i class="ri-eye-line"></i> eye</div>
+          <div class="icon-item"><i class="ri-eye-off-line"></i> eye-off</div>
+          <div class="icon-item"><i class="ri-sun-line"></i> sun (light)</div>
+          <div class="icon-item"><i class="ri-moon-line"></i> moon (dark)</div>
+          <div class="icon-item"><i class="ri-plant-line"></i> plant</div>
+          <div class="icon-item"><i class="ri-temp-hot-line"></i> temperature</div>
+          <div class="icon-item"><i class="ri-drop-line"></i> drop</div>
+          <div class="icon-item"><i class="ri-loader-4-line"></i> loader</div>
+          <div class="icon-item"><i class="ri-settings-3-line"></i> settings</div>
+          <div class="icon-item"><i class="ri-logout-box-line"></i> logout</div>
+          <div class="icon-item"><i class="ri-dashboard-line"></i> dashboard</div>
+          <div class="icon-item"><i class="ri-map-pin-line"></i> map-pin</div>
+        </div>
+
+        <h3 class="subsection-title">CDN Link</h3>
+        <div class="type-sample">
+          <code style="font-family:monospace;font-size:14px;color:var(--neutral-black);word-break:break-all;">
+            &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"&gt;
+          </code>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+         CSS VARIABLES
+         ================================ -->
+    <section id="variables">
+      <div class="container">
+        <h2 class="section-title">CSS Variables Reference</h2>
+        <p class="section-desc">Copy-paste ready. Use these variables for consistent theming across projects.</p>
+
+        <h3 class="subsection-title">Colors</h3>
+        <table class="var-table">
+          <thead>
+            <tr>
+              <th>Variable</th>
+              <th>Light</th>
+              <th>Dark</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>--primary-green</code></td>
+              <td><span class="color-dot" style="background:#5A7D3A;"></span>#5A7D3A</td>
+              <td><span class="color-dot" style="background:#7BA352;"></span>#7BA352</td>
+            </tr>
+            <tr>
+              <td><code>--primary-green-light</code></td>
+              <td><span class="color-dot" style="background:#9BB88A;"></span>#9BB88A</td>
+              <td><span class="color-dot" style="background:#4A6741;"></span>#4A6741</td>
+            </tr>
+            <tr>
+              <td><code>--primary-green-dark</code></td>
+              <td><span class="color-dot" style="background:#2F4F2F;"></span>#2F4F2F</td>
+              <td><span class="color-dot" style="background:#5A7D3A;"></span>#5A7D3A</td>
+            </tr>
+            <tr>
+              <td><code>--accent-green</code></td>
+              <td><span class="color-dot" style="background:#6B8F47;"></span>#6B8F47</td>
+              <td><span class="color-dot" style="background:#6B8F47;"></span>#6B8F47</td>
+            </tr>
+            <tr>
+              <td><code>--secondary-green</code></td>
+              <td><span class="color-dot" style="background:#A4C639;"></span>#A4C639</td>
+              <td><span class="color-dot" style="background:#A4C639;"></span>#A4C639</td>
+            </tr>
+            <tr>
+              <td><code>--secondary-green-light</code></td>
+              <td><span class="color-dot" style="background:#F0F8E8;"></span>#F0F8E8</td>
+              <td><span class="color-dot" style="background:#F0F8E8;"></span>#F0F8E8</td>
+            </tr>
+            <tr>
+              <td><code>--tertiary-green</code></td>
+              <td><span class="color-dot" style="background:#7CB518;"></span>#7CB518</td>
+              <td><span class="color-dot" style="background:#7CB518;"></span>#7CB518</td>
+            </tr>
+            <tr>
+              <td><code>--sage-green</code></td>
+              <td><span class="color-dot" style="background:#8FBC8F;"></span>#8FBC8F</td>
+              <td><span class="color-dot" style="background:#8FBC8F;"></span>#8FBC8F</td>
+            </tr>
+            <tr>
+              <td><code>--neutral-black</code></td>
+              <td><span class="color-dot" style="background:#151515;"></span>#151515</td>
+              <td><span class="color-dot" style="background:#F0F0F0;"></span>#F0F0F0</td>
+            </tr>
+            <tr>
+              <td><code>--dark-gray</code></td>
+              <td><span class="color-dot" style="background:#333333;"></span>#333333</td>
+              <td><span class="color-dot" style="background:#A0A0A0;"></span>#A0A0A0</td>
+            </tr>
+            <tr>
+              <td><code>--text-gray</code></td>
+              <td><span class="color-dot" style="background:#555555;"></span>#555555</td>
+              <td><span class="color-dot" style="background:#A0A0A0;"></span>#A0A0A0</td>
+            </tr>
+            <tr>
+              <td><code>--light-gray</code></td>
+              <td><span class="color-dot" style="background:#E8F2EB;"></span>#E8F2EB</td>
+              <td>rgba(123,163,82,0.15)</td>
+            </tr>
+            <tr>
+              <td><code>--background-white</code></td>
+              <td><span class="color-dot" style="background:#FFFFFF;border:1px solid #ddd;"></span>#FFFFFF</td>
+              <td><span class="color-dot" style="background:#0F1A12;"></span>#0F1A12</td>
+            </tr>
+            <tr>
+              <td><code>--section-background</code></td>
+              <td><span class="color-dot" style="background:#F8FCF6;"></span>#F8FCF6</td>
+              <td><span class="color-dot" style="background:#1E2E23;"></span>#1E2E23</td>
+            </tr>
+            <tr>
+              <td><code>--subtle-green</code></td>
+              <td><span class="color-dot" style="background:#F0F8F2;"></span>#F0F8F2</td>
+              <td><span class="color-dot" style="background:#1E2E23;"></span>#1E2E23</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 class="subsection-title">Typography & Spacing</h3>
+        <table class="var-table">
+          <thead>
+            <tr>
+              <th>Variable</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>--font-primary</code></td><td>'Mulish', sans-serif</td></tr>
+            <tr><td><code>--heading-1</code></td><td>72px</td></tr>
+            <tr><td><code>--heading-2</code></td><td>60px</td></tr>
+            <tr><td><code>--heading-3</code></td><td>48px</td></tr>
+            <tr><td><code>--heading-4</code></td><td>36px</td></tr>
+            <tr><td><code>--heading-5</code></td><td>30px</td></tr>
+            <tr><td><code>--heading-6</code></td><td>24px</td></tr>
+            <tr><td><code>--p1-semibold</code></td><td>20px</td></tr>
+            <tr><td><code>--p2-regular</code></td><td>18px</td></tr>
+            <tr><td><code>--p3-regular</code></td><td>16px</td></tr>
+            <tr><td><code>--p4-regular</code></td><td>14px</td></tr>
+            <tr><td><code>--p5-semibold</code></td><td>12px</td></tr>
+            <tr><td><code>--container-width</code></td><td>1440px</td></tr>
+            <tr><td><code>--section-padding</code></td><td>100px</td></tr>
+            <tr><td><code>--gutter</code></td><td>32px</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer style="padding:40px 0;text-align:center;color:var(--text-gray);font-size:13px;border-top:1px solid var(--light-gray);">
+    <div class="container">
+      POTENTIAL Design System &middot; Generated from source code &middot; Last updated: March 2026
+    </div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement
+      const isDark = html.getAttribute('data-theme') === 'dark'
+
+      if (isDark) {
+        html.removeAttribute('data-theme')
+        document.getElementById('theme-icon').className = 'ri-moon-line'
+        document.getElementById('theme-label').textContent = 'Dark Mode'
+      } else {
+        html.setAttribute('data-theme', 'dark')
+        document.getElementById('theme-icon').className = 'ri-sun-line'
+        document.getElementById('theme-label').textContent = 'Light Mode'
+      }
+    }
+  </script>
+
+</body>
+</html>
