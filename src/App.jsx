@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Home from "./pages/Home";
+import Preloader from "./components/ui/Preloader";
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -20,7 +21,12 @@ function App() {
 
   const toggleDarkMode = () => setDarkMode((prev) => !prev);
 
-  return <Home darkMode={darkMode} toggleDarkMode={toggleDarkMode} />;
+  return (
+    <>
+      <Preloader />
+      <Home darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+    </>
+  );
 }
 
 export default App;

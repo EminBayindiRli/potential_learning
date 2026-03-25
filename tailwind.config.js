@@ -45,6 +45,7 @@ export default {
         "fade-in-up": "fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         "float": "float 6s ease-in-out infinite",
         "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "scale-x": "scaleX 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards",
       },
       keyframes: {
         fadeInUp: {
@@ -54,6 +55,10 @@ export default {
         float: {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
+        },
+        scaleX: {
+          "0%": { transform: "scaleX(0)" },
+          "100%": { transform: "scaleX(1)" },
         },
       },
     },
