@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 
 function Preloader() {
-  const [stage, setStage] = useState(0); // 0: loading, 1: finish-anim, 2: unmount
+  const [stage, setStage] = useState(0); // 0: loading, 1: curtain-up, 2: unmount
 
   useEffect(() => {
-    // 2.2 saniye boyunca giriş animasyonu gösterilecek
+    // 1.8 saniye (tam dolum süresi bitimi civarında) perde animasyonunu başlat
     const enterTimer = setTimeout(() => {
       setStage(1);
-    }, 2200);
+    }, 1800);
 
-    // 3.2 saniye sonra tamamen DOM'dan kaldırılacak (geçiş animasyonu bittikten sonra)
+    // 2.8 saniye sonra DOM'dan tamamen kaldır
     const leaveTimer = setTimeout(() => {
       setStage(2);
-    }, 3200);
+    }, 2800);
 
     return () => {
       clearTimeout(enterTimer);
@@ -25,111 +25,50 @@ function Preloader() {
   return (
     <>
       <style>{`
-        .letter-stagger {
-          display: inline-block;
-          opacity: 0;
-          transform: translateY(15px);
-          animation: fadeUpLetter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        @keyframes fadeUpLetter {
-          100% { opacity: 1; transform: translateY(0); }
-        }
-
-        .shimmer-text {
-          background: linear-gradient(
-            -45deg, 
-            var(--primary-green-dark) 40%, 
-            var(--primary-green-light) 50%, 
-            var(--primary-green) 60%
-          );
-          background-size: 200% auto;
-          color: transparent;
-          -webkit-background-clip: text;
-          background-clip: text;
-          animation: shimmerSweep 3s linear infinite;
-        }
-
-        @keyframes shimmerSweep {
-          100% { background-position: 200% center; }
-        }
-
         .curtain-layer {
-          transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
-        }
-
-        .svg-ring-draw {
-          stroke-dasharray: 200;
-          stroke-dashoffset: 200;
-          animation: drawRing 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        @keyframes drawRing {
-          100% { stroke-dashoffset: 0; }
+          transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
         }
       `}</style>
-      
-      {/* 2. Layer: Koyu Yeşil Perde (Son Kapanış) */}
+
+      {/* 2. Layer: Çıkış için Koyu Yeşil Perde Animasyonu */}
       <div
         className={`curtain-layer fixed inset-0 z-[98] bg-[var(--primary-green-dark)] ${
           stage === 1 ? "-translate-y-full" : "translate-y-0"
         }`}
-        style={{ transitionDelay: "0.15s" }}
+        style={{ transitionDelay: "0.1s" }}
       />
 
-      {/* 1. Layer: Ana Beyaz Arka Plan ve İçerik */}
+      {/* 1. Layer: Ana Beyaz Arka Plan ve Yükleme İçeriği */}
       <div
         className={`curtain-layer fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[var(--background-white)] ${
           stage === 1 ? "-translate-y-full" : "translate-y-0"
         }`}
       >
-        <div className="relative flex flex-col items-center justify-center">
+        <div className="relative flex animate-fade-in-up flex-col items-center justify-center">
           
-          {/* Arka Plan Cemberleri ve Dönen Çizgi */}
-          <div className="absolute h-[160px] w-[160px] rounded-full border border-[var(--light-gray)] opacity-60" />
-          <svg 
-            className="absolute h-[160px] w-[160px] -rotate-90 animate-[spin_8s_linear_infinite]" 
-            viewBox="0 0 100 100"
-          >
-            <circle 
-              className="svg-ring-draw"
-              cx="50" cy="50" r="48" 
-              fill="none" 
-              stroke="var(--primary-green)" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-            />
-          </svg>
-
-          {/* Logo Merkezi */}
-          <div className="relative z-10 flex h-24 w-24 items-center justify-center rounded-3xl bg-[var(--section-background)] shadow-[0_0_50px_rgba(90,125,58,0.15)] transition-transform duration-700 hover:scale-105">
-            <i className="ri-plant-fill text-5xl text-[var(--primary-green)] drop-shadow-md" />
-          </div>
-
-          {/* Harf Harf Stagger Animasyonlu İsim */}
-          <div className="mt-10 overflow-hidden font-black">
-            <h1 className="shimmer-text flex text-[28px] tracking-[0.3em]">
-              {"POTENTIAL".split("").map((char, index) => (
-                <span 
-                  key={index} 
-                  className="letter-stagger" 
-                  style={{ animationDelay: `${0.3 + index * 0.08}s` }}
-                >
-                  {char}
-                </span>
-              ))}
-            </h1>
+          {/* Arka plan ışımaları (Pulse & Ping) */}
+          <div className="absolute top-[40%] h-36 w-36 -translate-y-1/2 animate-ping rounded-full bg-[var(--primary-green-light)] opacity-20" />
+          <div className="absolute top-[40%] h-24 w-24 -translate-y-1/2 animate-pulse rounded-full bg-[var(--primary-green)] opacity-30" />
+          
+          {/* İkon / Logo Kutusu */}
+          <div className="relative z-10 flex h-20 w-20 items-center justify-center rounded-2xl bg-[var(--primary-green)] text-white shadow-2xl">
+            <i className="ri-plant-fill text-5xl drop-shadow-md" />
           </div>
           
-          {/* Alt Başlık Fading In */}
-          <div className="mt-3 overflow-hidden">
-            <div 
-              className="letter-stagger text-[11px] font-bold uppercase tracking-[0.4em] text-[var(--text-gray)]"
-              style={{ animationDelay: "1.2s" }}
-            >
-              Learning Platform
-            </div>
+          {/* İsim Vurgusu (Sabit ve belirgin) */}
+          <h1 className="mt-8 text-2xl font-black tracking-widest text-[var(--neutral-black)]">
+            <span className="text-gradient">POTENTIAL</span>
+          </h1>
+
+          <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--text-gray)]">
+            Learning Platform
+          </p>
+          
+          {/* Klasik Yükleme Çubuğu Animasyonu */}
+          <div className="mt-12 h-1.5 w-48 overflow-hidden rounded-full bg-[var(--light-gray)]">
+            <div className="h-full origin-left bg-gradient-to-r from-[var(--primary-green)] to-[var(--accent-green)] animate-scale-x" />
           </div>
+          
         </div>
       </div>
     </>
