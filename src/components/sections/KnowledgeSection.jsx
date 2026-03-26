@@ -1,6 +1,10 @@
-import knowledgeCards from "../../data/knowledgeCards";
+import { useTranslation } from "react-i18next";
+import { useKnowledgeCards } from "../../data/knowledgeCards";
 
 function KnowledgeSection() {
+  const { t } = useTranslation();
+  const knowledgeCards = useKnowledgeCards();
+
   return (
     <section className="relative overflow-hidden bg-[var(--background-white)] py-24 lg:py-32">
       {/* Decorative gradient orb */}
@@ -13,16 +17,17 @@ function KnowledgeSection() {
             <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--accent-green)]/15 text-[var(--accent-green)]">
               <i className="ri-book-open-line" />
             </span>
-            <span className="text-gradient">Knowledge Hub</span>
+            <span className="text-gradient">{t("knowledge.badge")}</span>
           </div>
 
           <h2 className="text-heading-3 lg:text-heading-2 font-black text-[var(--neutral-black)] mt-4">
-            Master the <span className="text-[var(--primary-green)]">science</span> behind farming
+            {t("knowledge.title_start")}
+            <span className="text-[var(--primary-green)]"> {t("knowledge.title_highlight")} </span>
+            {t("knowledge.title_end")}
           </h2>
 
           <p className="mt-8 text-lg leading-relaxed text-[var(--text-gray)] mx-auto max-w-2xl">
-            This specialized knowledge base simplifies theoretical concepts and connects them 
-            directly to the Potential platform's agricultural analysis tools.
+            {t("knowledge.desc")}
           </p>
         </div>
 
@@ -63,10 +68,10 @@ function KnowledgeSection() {
         {/* Bottom CTA Overlay */}
         <div className="mt-16 text-center animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
           <p className="text-sm font-semibold uppercase tracking-wider text-[var(--text-gray)] mb-4">
-            Want to see these concepts in action?
+            {t("knowledge.cta")}
           </p>
           <a href="https://dev.d23ggi28ujjgg2.amplifyapp.com/" target="_blank" rel="noreferrer" className="btn-premium">
-            Launch Potential Panel
+            {t("knowledge.ctaBtn")}
             <i className="ri-arrow-right-line" />
           </a>
         </div>

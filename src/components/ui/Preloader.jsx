@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 function Preloader() {
+  const { t } = useTranslation();
   const [stage, setStage] = useState(0);
 
   useEffect(() => {
-    // 1.5 saniye ekranda kalır, sonra kaybolmaya başlar
     const enterTimer = setTimeout(() => {
       setStage(1);
     }, 1500);
 
-    // 2.3 saniye sonra DOM'dan tamamen kalkar
     const leaveTimer = setTimeout(() => {
       setStage(2);
     }, 2300);
@@ -39,7 +39,6 @@ function Preloader() {
         }
       `}</style>
       
-      {/* Dümdüz, Temiz Beyaz Arka Plan */}
       <div
         className={`fixed inset-0 z-[100] flex items-center justify-center bg-[var(--background-white)] minimal-fade ${
           stage === 1 ? "opacity-0 pointer-events-none" : "opacity-100"
@@ -47,9 +46,7 @@ function Preloader() {
       >
         <div className="flex flex-col items-center justify-center elegant-zoom">
           
-          {/* Yan Yana Logo ve Text - Modern minimalist görünüm */}
           <div className="flex items-center gap-5">
-            {/* Sade Logo Kutusu */}
             <div className="flex h-16 w-16 items-center justify-center rounded-[1rem] bg-[var(--primary-green)] text-white shadow-lg">
               <i className="ri-plant-line text-[2rem]" />
             </div>
@@ -59,7 +56,7 @@ function Preloader() {
                 POTENTIAL
               </h1>
               <p className="mb-0.5 text-xs font-semibold uppercase tracking-widest text-[var(--text-gray)]">
-                Learning Platform
+                {t("preloader.subtitle")}
               </p>
             </div>
           </div>

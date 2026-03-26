@@ -1,6 +1,10 @@
-import videos from "../../data/videos";
+import { useTranslation } from "react-i18next";
+import { useVideos } from "../../data/videos";
 
 function VideoSection() {
+  const { t } = useTranslation();
+  const videos = useVideos();
+
   return (
     <section id="learn" className="relative py-24 lg:py-32 bg-[var(--background-white)]">
       <div className="mx-auto max-w-container px-6 lg:px-8">
@@ -11,23 +15,24 @@ function VideoSection() {
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--primary-green)]/10 text-[var(--primary-green)]">
                 <i className="ri-play-fill text-lg animate-pulse" />
               </span>
-              <span className="text-[var(--neutral-black)]">Video Library</span>
+              <span className="text-[var(--neutral-black)]">{t("video.badge")}</span>
             </div>
 
             <h2 className="text-heading-3 lg:text-heading-2 font-black text-[var(--neutral-black)] lg:max-w-xl">
-              Learn through <br className="hidden lg:block"/>
-              <span className="text-gradient">interactive</span> guides
+              {t("video.title_start")}
+              <span className="text-gradient"> {t("video.title_highlight")} </span>
+              {t("video.title_end")}
             </h2>
             
             <p className="mt-6 text-lg leading-relaxed text-[var(--text-gray)]">
-              Watch curated short videos about the Potential platform, potato farming techniques, and the critical role of remote sensing.
+              {t("video.desc")}
             </p>
           </div>
 
           <div className="hidden md:block">
             <a href="https://dev.d23ggi28ujjgg2.amplifyapp.com/" target="_blank" rel="noreferrer" className="btn-outline">
-              Explore Panel
-              <i className="ri-arrow-right-up-line" />
+              {t("video.btnExplore")}
+              <i className="ri-arrow-right-up-line ml-2" />
             </a>
           </div>
         </div>
@@ -68,9 +73,9 @@ function VideoSection() {
                 </p>
 
                 <div className="mt-8 flex items-center justify-between border-t border-[var(--light-gray)] pt-5">
-                  <span className="text-xs font-bold uppercase tracking-wider text-[var(--text-gray)]">
-                    <i className="ri-time-line mr-1 align-text-bottom" /> 
-                    {video.duration || "4 mins"}
+                  <span className="flex items-center text-xs font-bold uppercase tracking-wider text-[var(--text-gray)]">
+                    <i className="ri-time-line mr-1 text-base leading-none" /> 
+                    {video.duration}
                   </span>
                   
                   <a
@@ -79,7 +84,7 @@ function VideoSection() {
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 text-sm font-bold text-[var(--primary-green)] transition-colors hover:text-[var(--primary-green-dark)]"
                   >
-                    Watch Now
+                    {t("video.btnWatch")}
                     <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--primary-green)]/10 transition-transform duration-300 group-hover:translate-x-1 group-hover:bg-[var(--primary-green)] group-hover:text-white">
                       <i className="ri-youtube-fill" />
                     </span>

@@ -1,6 +1,9 @@
+import { useTranslation } from "react-i18next";
 import heroImage from "../../assets/potential-hero.jpeg";
 
 function HeroSection() {
+  const { t } = useTranslation();
+
   return (
     <section
       id="home"
@@ -22,14 +25,14 @@ function HeroSection() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--primary-green)] opacity-75"></span>
               <span className="relative inline-flex h-3 w-3 rounded-full bg-[var(--primary-green)]"></span>
             </span>
-            Precision Agriculture Learning Hub
+            {t("hero.badge")}
           </div>
 
           {/* Headline */}
           <h1 className="text-heading-2 font-black text-[var(--neutral-black)] lg:text-heading-1">
-            Learn How to Use <br className="hidden lg:block" />
+            {t("hero.title_start")} <br className="hidden lg:block" />
             <span className="text-gradient relative inline-block">
-              Potential Panel
+              {t("hero.title_highlight")}
               <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2.20337 5.56475C34.3435 2.15579 104.975 -1.53039 198.056 6.6436" stroke="var(--primary-green-light)" strokeWidth="3" strokeLinecap="round" />
               </svg>
@@ -37,28 +40,27 @@ function HeroSection() {
           </h1>
 
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-[var(--text-gray)]">
-            Explore how Potential helps users interpret satellite, drone, and
-            environmental data for productivity and quality analysis in smarter potato farming.
+            {t("hero.description")}
           </p>
 
           {/* CTA Buttons */}
           <div className="mt-10 flex flex-wrap items-center gap-5">
             <a href="#learn" className="btn-premium">
               <i className="ri-play-circle-fill text-xl" />
-              Start Learning
+              {t("hero.btnStart")}
             </a>
             <a href="https://dev.d23ggi28ujjgg2.amplifyapp.com/" target="_blank" rel="noreferrer" className="btn-outline">
               <i className="ri-external-link-line" />
-              Go to Panel
+              {t("hero.btnPanel")}
             </a>
           </div>
 
           {/* Feature Pills */}
           <div className="mt-14 flex w-full flex-wrap gap-4 border-t border-[var(--light-gray)] pt-8">
             {[
-              { icon: "ri-satellite-line", text: "Satellite Insights" },
-              { icon: "ri-drone-line", text: "Drone Support" },
-              { icon: "ri-line-chart-line", text: "Performance Data" },
+              { icon: "ri-satellite-line", text: t("hero.featSatellite") },
+              { icon: "ri-drone-line", text: t("hero.featDrone") },
+              { icon: "ri-line-chart-line", text: t("hero.featData") },
             ].map((feat, i) => (
               <div key={i} className="flex items-center gap-2 text-sm font-semibold text-[var(--text-gray)]">
                 <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--subtle-green)] text-[var(--primary-green)]">
@@ -91,8 +93,8 @@ function HeroSection() {
                   <i className="ri-shield-check-fill text-2xl" />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-[var(--neutral-black)]">Data Verified</p>
-                  <p className="text-xs font-medium text-[var(--text-gray)]">Satellite + Drone Sync</p>
+                  <p className="text-sm font-bold text-[var(--neutral-black)]">{t("hero.badgeVerifiedTitle")}</p>
+                  <p className="text-xs font-medium text-[var(--text-gray)]">{t("hero.badgeVerifiedSub")}</p>
                 </div>
               </div>
             </div>
@@ -101,7 +103,7 @@ function HeroSection() {
             <div className="absolute -right-6 top-12 z-20 animate-float rounded-2xl border border-white/20 bg-white/90 p-4 shadow-card-lg backdrop-blur-md dark:border-white/10 dark:bg-black/80" style={{ animationDelay: "1.5s" }}>
               <div className="flex items-center gap-3">
                 <div className="flex flex-col">
-                  <p className="text-sm font-medium text-[var(--text-gray)]">Field Accuracy</p>
+                  <p className="text-sm font-medium text-[var(--text-gray)]">{t("hero.badgeAccuracyTitle")}</p>
                   <p className="text-xl font-bold text-[var(--primary-green)]">99.8%</p>
                 </div>
                 <i className="ri-bar-chart-grouped-line text-3xl text-[var(--accent-green)] opacity-50" />

@@ -1,10 +1,14 @@
+import { useTranslation } from "react-i18next";
+
 function Footer() {
+  const { t } = useTranslation();
+
   const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#how-to-use", label: "How to Use" },
-    { href: "#learn", label: "Learn" },
-    { href: "#faq", label: "FAQ" },
+    { href: "#home", label: t("navbar.home") },
+    { href: "#about", label: t("navbar.about") },
+    { href: "#how-to-use", label: t("navbar.howToUse") },
+    { href: "#learn", label: t("navbar.learn") },
+    { href: "#faq", label: t("navbar.faq") },
   ];
 
   return (
@@ -25,21 +29,20 @@ function Footer() {
                   POTENTIAL
                 </p>
                 <p className="text-xs font-semibold uppercase tracking-wider text-[var(--text-gray)]">
-                  Learning Platform
+                  {t("footer.subtitle")}
                 </p>
               </div>
             </a>
 
             <p className="mt-6 max-w-md text-base leading-relaxed text-[var(--text-gray)]">
-              A premium educational and onboarding experience designed to help
-              users master the Potential platform and its advanced precision agriculture tools.
+              {t("footer.desc")}
             </p>
 
             {/* Stats */}
             <div className="mt-8 flex gap-8">
               {[
-                { value: "99.8%", label: "Accuracy" },
-                { value: "4", label: "Steps to Master" },
+                { value: t("footer.stat1_value"), label: t("footer.stat1_label") },
+                { value: t("footer.stat2_value"), label: t("footer.stat2_label") },
               ].map((s) => (
                 <div key={s.label}>
                   <p className="text-2xl font-black text-gradient">{s.value}</p>
@@ -55,7 +58,7 @@ function Footer() {
           {/* Links */}
           <div className="lg:col-span-2">
             <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-[var(--neutral-black)]">
-              Navigation
+              {t("footer.nav_title")}
             </h4>
             <ul className="flex flex-col gap-4">
               {navLinks.map((link) => (
@@ -80,11 +83,11 @@ function Footer() {
               </div>
               
               <h4 className="mb-3 text-lg font-bold text-[var(--neutral-black)]">
-                Start Analyzing Today
+                {t("footer.cta_title")}
               </h4>
               
               <p className="mb-6 text-sm leading-relaxed text-[var(--text-gray)]">
-                Ready to put what you've learned into practice? Access your real field data directly.
+                {t("footer.cta_desc")}
               </p>
               
               <a
@@ -93,7 +96,7 @@ function Footer() {
                 rel="noreferrer"
                 className="btn-premium w-full justify-center"
               >
-                Open Potential Panel
+                {t("footer.cta_btn")}
                 <i className="ri-arrow-right-line" />
               </a>
             </div>
@@ -103,14 +106,16 @@ function Footer() {
         {/* Bottom Bar */}
         <div className="mt-20 flex flex-col items-center justify-between gap-4 border-t border-[var(--light-gray)] pb-8 pt-8 sm:flex-row">
           <p className="text-sm font-medium text-[var(--text-gray)]">
-            © 2026 POTENTIAL. All rights reserved.
+            {t("footer.copyright")}
           </p>
           <div className="flex items-center gap-3 rounded-full border border-[var(--light-gray)] bg-white px-4 py-1.5 shadow-sm dark:bg-[var(--section-background)]">
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--primary-green)] opacity-75"></span>
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[var(--primary-green)]"></span>
             </span>
-            <span className="text-xs font-bold text-[var(--neutral-black)] uppercase tracking-wide">Systems Online</span>
+            <span className="text-xs font-bold text-[var(--neutral-black)] uppercase tracking-wide">
+              {t("footer.sysOnline")}
+            </span>
           </div>
         </div>
       </div>

@@ -1,8 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 function Navbar({ darkMode, toggleDarkMode }) {
+  const { t, i18n } = useTranslation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
+  const langRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -12,12 +16,35 @@ function Navbar({ darkMode, toggleDarkMode }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (langRef.current && !langRef.current.contains(event.target)) {
+        setLangOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#how-to-use", label: "How to Use" },
-    { href: "#learn", label: "Learn" },
-    { href: "#faq", label: "FAQ" },
+    { href: "#home", label: t("navbar.home") },
+    { href: "#about", label: t("navbar.about") },
+    { href: "#how-to-use", label: t("navbar.howToUse") },
+    { href: "#learn", label: t("navbar.learn") },
+    { href: "#faq", label: t("navbar.faq") },
+  ];
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    setLangOpen(false);
+  };
+
+  const currentLang = i18n.language ? i18n.language.substring(0, 2).toUpperCase() : 'EN';
+  const languages = [
+    { code: 'en', label: 'English', short: 'EN' },
+    { code: 'tr', label: 'Türkçe', short: 'TR' },
+    { code: 'pl', label: 'Polski', short: 'PL' }
   ];
 
   return (
@@ -37,7 +64,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
               POTENTIAL
             </p>
             <p className="hidden text-xs text-[var(--text-gray)] sm:block">
-              Learning Platform
+              {t("navbar.subtitle")}
             </p>
           </div>
         </a>
@@ -58,6 +85,39 @@ function Navbar({ darkMode, toggleDarkMode }) {
 
         {/* Right Actions */}
         <div className="flex items-center gap-3">
+          
+          {/* Language Switcher Dropdown */}
+          <div className="relative" ref={langRef}>
+            <button
+              onClick={() => setLangOpen(!langOpen)}
+              className="icon-glow flex h-10 w-auto min-w-[3rem] px-2 items-center gap-1 !rounded-lg"
+              aria-label="Change Language"
+            >
+              <i className="ri-global-line text-[15px]" />
+              <span className="text-xs font-bold leading-none">{currentLang}</span>
+            </button>
+            
+            {/* Dropdown Menu */}
+            <div 
+              className={`absolute right-0 mt-2 w-36 origin-top-right overflow-hidden rounded-xl border border-[var(--light-gray)] bg-white/95 p-1 px-1 shadow-lg backdrop-blur-md transition-all duration-200 dark:bg-[#121c15]/95 ${
+                langOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"
+              }`}
+            >
+              {languages.map((lng) => (
+                <button
+                  key={lng.code}
+                  onClick={() => changeLanguage(lng.code)}
+                  className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-[var(--subtle-green)] hover:text-[var(--primary-green)] ${
+                    currentLang === lng.short ? "text-[var(--primary-green)] bg-[var(--subtle-green)]/50" : "text-[var(--text-gray)]"
+                  }`}
+                >
+                  {lng.label}
+                  {currentLang === lng.short && <i className="ri-check-line" />}
+                </button>
+              ))}
+            </div>
+          </div>
+
           {/* Dark Mode Toggle */}
           <button
             type="button"
@@ -73,10 +133,10 @@ function Navbar({ darkMode, toggleDarkMode }) {
             href="https://dev.d23ggi28ujjgg2.amplifyapp.com/"
             target="_blank"
             rel="noreferrer"
-            className="btn-premium hidden sm:inline-flex"
+            className="btn-premium hidden gap-2 sm:inline-flex"
           >
             <i className="ri-external-link-line text-sm" />
-            Go to Panel
+            <span className="whitespace-nowrap">{t("navbar.goToPanel_desktop")}</span>
           </a>
 
           {/* Mobile Menu Button */}
@@ -116,7 +176,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
             className="btn-premium w-full justify-center"
           >
             <i className="ri-external-link-line" />
-            Open Potential Panel
+            {t("navbar.openPanel")}
           </a>
         </div>
       </div>

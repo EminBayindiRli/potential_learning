@@ -1,24 +1,28 @@
+import { useTranslation } from "react-i18next";
+
 function AboutSection() {
+  const { t } = useTranslation();
+
   const features = [
     {
       icon: "ri-satellite-line",
-      title: "Satellite Monitoring",
-      desc: "Track field variability and vegetation-related insights across different locations.",
+      title: t("about.feat1_title"),
+      desc: t("about.feat1_title_desc"),
     },
     {
       icon: "ri-flight-takeoff-line",
-      title: "Drone-Based Views",
-      desc: "Add closer visual support for understanding plant and field conditions.",
+      title: t("about.feat2_title"),
+      desc: t("about.feat2_title_desc"),
     },
     {
       icon: "ri-line-chart-line",
-      title: "Productivity Analysis",
-      desc: "Review indicators connected to field performance and expected outcomes.",
+      title: t("about.feat3_title"),
+      desc: t("about.feat3_title_desc"),
     },
     {
       icon: "ri-seedling-line",
-      title: "Quality Support",
-      desc: "Understand how analysis outputs can support quality-related interpretation.",
+      title: t("about.feat4_title"),
+      desc: t("about.feat4_title_desc"),
     },
   ];
 
@@ -30,31 +34,33 @@ function AboutSection() {
           <div className="animate-fade-in-up">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--light-gray)] bg-[var(--section-background)] px-4 py-2 text-sm font-semibold text-[var(--primary-green)] shadow-sm">
               <i className="ri-information-fill text-lg animate-pulse-slow" />
-              Intelligence Core
+              {t("about.badge")}
             </div>
 
             <h2 className="text-heading-3 lg:text-heading-2 font-black text-[var(--neutral-black)] mt-4">
-              Decision support platform for{" "}
-              <span className="text-gradient">smarter</span> potato field monitoring
+              {t("about.title_start")}
+              <span className="text-gradient hover:opacity-90">{t("about.title_highlight")}</span>
+              {t("about.title_end")}
             </h2>
 
             <p className="mt-8 text-lg leading-relaxed text-[var(--text-gray)]">
-              Potential is designed to help users understand field conditions
-              and interpret agricultural data through a clear and visual
-              interface. It brings together <span className="font-semibold text-[var(--neutral-black)]">satellite observations</span>, <span className="font-semibold text-[var(--neutral-black)]">drone-based imagery</span>, and environmental information to support more informed field analysis.
+              {t("about.desc1").split(t("about.desc1_bold1")).map((part, i, arr) => (
+                <span key={i}>
+                  {part}
+                  {i < arr.length - 1 && <span className="font-semibold text-[var(--neutral-black)]">{t("about.desc1_bold1")}</span>}
+                </span>
+              ))}
             </p>
 
             <p className="mt-4 text-lg leading-relaxed text-[var(--text-gray)]">
-              The platform focuses on productivity and quality analysis, helping
-              users read field-level insights and translate complex agricultural
-              signals into more understandable outputs.
+              {t("about.desc2")}
             </p>
 
             <a
               href="#how-to-use"
               className="group mt-10 inline-flex items-center gap-3 text-base font-bold text-[var(--primary-green)] transition-all duration-300 hover:gap-5"
             >
-              See how it works
+              {t("about.cta")}
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--primary-green-light)]/20 text-[var(--primary-green)] transition-transform group-hover:bg-[var(--primary-green)] group-hover:text-white">
                 <i className="ri-arrow-right-line" />
               </span>
