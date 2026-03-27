@@ -1,16 +1,43 @@
-# React + Vite
+# Potential Learning Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Potential Panel'in kullanımını öğreten interaktif web platformu. Uydu, drone ve çevresel veri analizi ile akıllı patates tarımı için rehber niteliğinde bir öğrenme merkezi.
 
-Currently, two official plugins are available:
+## Teknolojiler
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **React 19** + **Vite** — SPA framework ve build tool
+- **Tailwind CSS** — utility-first styling
+- **Framer Motion** — kart giriş animasyonları
+- **i18next** — çoklu dil desteği (TR, EN, PL)
+- **AWS Amplify** — deployment
 
-## React Compiler
+## Özellikler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Panel tasarım diliyle tutarlı UI
+- Animasyonlu hero section (NDVI haritası, verim trendi, tarla istatistikleri)
+- Scroll-triggered reveal animasyonları
+- Dark/light mode
+- Responsive tasarım
+- SSS (FAQ) accordion bileşeni
 
-## Expanding the ESLint configuration
+## Klasör Yapısı
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+src/
+├── components/
+│   ├── layout/          # Navbar, Footer
+│   ├── sections/        # Hero, About, HowToUse, Video, Knowledge, FAQ
+│   └── ui/              # Preloader, FAQItem
+├── hooks/               # useScrollReveal
+├── locales/             # en/, tr/, pl/ çeviri dosyaları
+├── pages/               # Home
+├── data/                # Statik veri
+├── i18n/                # i18next konfigürasyonu
+└── index.css            # CSS design system & değişkenler
+```
+
+## Kurulum
+
+```bash
+npm install
+npm run dev
+```
