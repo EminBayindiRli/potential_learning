@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import logo from "../../assets/logo.png";
 
 function Footer() {
   const { t } = useTranslation();
@@ -21,11 +22,9 @@ function Footer() {
           {/* Brand Info */}
           <div className="lg:col-span-5">
             <a href="#home" className="group flex w-fit items-center gap-3">
-              <div className="icon-glow flex h-12 w-12 !rounded-xl text-[var(--primary-green)] transition-all duration-300 group-hover:bg-[var(--primary-green)] group-hover:text-white">
-                <i className="ri-plant-line text-2xl" />
-              </div>
+              <img src={logo} alt="Potential logo" className="h-12 w-12 rounded-xl object-contain" />
               <div>
-                <p className="text-xl font-black tracking-tight text-[var(--neutral-black)] transition-colors group-hover:text-[var(--primary-green)]">
+                <p className="text-xl font-bold tracking-tight text-[var(--neutral-black)] transition-colors group-hover:text-[var(--primary-green)]">
                   POTENTIAL
                 </p>
                 <p className="text-xs font-semibold uppercase tracking-wider text-[var(--text-gray)]">
@@ -45,7 +44,7 @@ function Footer() {
                 { value: t("footer.stat2_value"), label: t("footer.stat2_label") },
               ].map((s) => (
                 <div key={s.label}>
-                  <p className="text-2xl font-black text-gradient">{s.value}</p>
+                  <p className="text-2xl font-bold text-gradient">{s.value}</p>
                   <p className="mt-1 text-xs font-semibold text-[var(--text-gray)] uppercase tracking-wide">{s.label}</p>
                 </div>
               ))}

@@ -24,7 +24,12 @@
     "featData": "Performance Data",
     "badgeVerifiedTitle": "Data Verified",
     "badgeVerifiedSub": "Satellite + Drone Sync",
-    "badgeAccuracyTitle": "Field Accuracy"
+    "badgeAccuracyTitle": "Field Accuracy",
+    "mockMap": "NDVI Map",
+    "mockChart": "Yield Trend",
+    "mockHealth": "Field Health",
+    "mockMoisture": "Soil Moisture",
+    "mockNdvi": "NDVI Index"
   },
   "about": {
     "badge": "Intelligence Core",

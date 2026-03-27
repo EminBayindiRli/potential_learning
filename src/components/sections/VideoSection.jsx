@@ -1,15 +1,17 @@
 import { useTranslation } from "react-i18next";
 import { useVideos } from "../../data/videos";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 function VideoSection() {
   const { t } = useTranslation();
   const videos = useVideos();
+  const [sectionRef, isVisible] = useScrollReveal();
 
   return (
-    <section id="learn" className="relative py-24 lg:py-32 bg-[var(--background-white)]">
-      <div className="mx-auto max-w-container px-6 lg:px-8">
+    <section id="learn" className="relative py-24 lg:py-32 bg-[var(--background-white)] border-b border-[var(--light-gray)]">
+      <div ref={sectionRef} className="mx-auto max-w-container px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 animate-fade-in-up">
+        <div className={`flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="max-w-2xl">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--light-gray)] bg-[var(--section-background)] px-5 py-2.5 text-sm font-bold shadow-sm">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--primary-green)]/10 text-[var(--primary-green)]">
@@ -18,7 +20,7 @@ function VideoSection() {
               <span className="text-[var(--neutral-black)]">{t("video.badge")}</span>
             </div>
 
-            <h2 className="text-heading-3 lg:text-heading-2 font-black text-[var(--neutral-black)] lg:max-w-xl">
+            <h2 className="text-heading-3 lg:text-heading-2 font-normal text-[var(--neutral-black)] lg:max-w-xl">
               {t("video.title_start")}
               <span className="text-gradient"> {t("video.title_highlight")} </span>
               {t("video.title_end")}
@@ -51,6 +53,7 @@ function VideoSection() {
                   className="absolute inset-0 h-full w-full opacity-90 transition-opacity duration-500 group-hover:opacity-100"
                   src={video.embedUrl}
                   title={video.title}
+                  loading="lazy"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />

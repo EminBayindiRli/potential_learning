@@ -7,10 +7,10 @@ import VideoSection from "../components/sections/VideoSection";
 import KnowledgeSection from "../components/sections/KnowledgeSection";
 import FAQSection from "../components/sections/FAQSection";
 
-function Home({ darkMode, toggleDarkMode }) {
+function Home({ darkMode, toggleDarkMode, showNav }) {
   return (
     <div style={{ background: "var(--background-white)", color: "var(--neutral-black)", minHeight: "100vh" }}>
-      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} showNav={showNav} />
       <main>
         <HeroSection />
         <AboutSection />

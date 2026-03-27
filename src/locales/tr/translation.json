@@ -24,7 +24,12 @@
     "featData": "Performans Verisi",
     "badgeVerifiedTitle": "Veri Doğrulandı",
     "badgeVerifiedSub": "Uydu + Drone Senkronu",
-    "badgeAccuracyTitle": "Tarla Doğruluğu"
+    "badgeAccuracyTitle": "Tarla Doğruluğu",
+    "mockMap": "NDVI Haritası",
+    "mockChart": "Verim Trendi",
+    "mockHealth": "Tarla Sağlığı",
+    "mockMoisture": "Toprak Nemi",
+    "mockNdvi": "NDVI İndeksi"
   },
   "about": {
     "badge": "Zeka Çekirdeği",

@@ -34,11 +34,12 @@ export default {
         "heading-3": ["48px", { lineHeight: "1.2", letterSpacing: "-0.02em" }],
         "heading-4": ["36px", { lineHeight: "1.25" }],
         "heading-5": ["30px", { lineHeight: "1.3" }],
+        "heading-6": ["24px", { lineHeight: "1.3" }],
       },
       boxShadow: {
-        card: "0 1px 3px rgba(0,0,0,0.06)",
-        "card-hover": "0 10px 30px rgba(0,0,0,0.08)",
-        "card-lg": "0 20px 40px rgba(0,0,0,0.12)",
+        card: "0 1px 2px rgba(0,0,0,0.05)",
+        "card-hover": "0 4px 6px rgba(0,0,0,0.07)",
+        "card-lg": "0 10px 15px rgba(0,0,0,0.1)",
         glow: "0 0 20px rgba(90, 125, 58, 0.3)",
       },
       animation: {

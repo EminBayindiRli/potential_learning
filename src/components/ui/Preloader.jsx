@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import logo from "../../assets/logo.png";
 
 function Preloader() {
   const { t } = useTranslation();
@@ -47,12 +48,10 @@ function Preloader() {
         <div className="flex flex-col items-center justify-center elegant-zoom">
           
           <div className="flex items-center gap-5">
-            <div className="flex h-16 w-16 items-center justify-center rounded-[1rem] bg-[var(--primary-green)] text-white shadow-lg">
-              <i className="ri-plant-line text-[2rem]" />
-            </div>
+            <img src={logo} alt="Potential logo" className="h-16 w-16 rounded-[1rem] object-contain" />
             
             <div className="flex flex-col">
-              <h1 className="text-3xl font-black tracking-tight text-[var(--neutral-black)]">
+              <h1 className="text-3xl font-bold tracking-tight text-[var(--neutral-black)]">
                 POTENTIAL
               </h1>
               <p className="mb-0.5 text-xs font-semibold uppercase tracking-widest text-[var(--text-gray)]">

@@ -24,7 +24,12 @@
     "featData": "Dane o Wydajności",
     "badgeVerifiedTitle": "Dane Zweryfikowane",
     "badgeVerifiedSub": "Satelita + Dron",
-    "badgeAccuracyTitle": "Dokładność Polowa"
+    "badgeAccuracyTitle": "Dokładność Polowa",
+    "mockMap": "Mapa NDVI",
+    "mockChart": "Trend Plonów",
+    "mockHealth": "Zdrowie Pola",
+    "mockMoisture": "Wilgotność Gleby",
+    "mockNdvi": "Indeks NDVI"
   },
   "about": {
     "badge": "Rdzeń Inteligencji",

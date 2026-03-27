@@ -9,6 +9,18 @@ function App() {
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
 
+  const [showNav, setShowNav] = useState(false);
+
+  useEffect(() => {
+    history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowNav(true), 1800);
+    return () => clearTimeout(timer);
+  }, []);
+
   useEffect(() => {
     if (darkMode) {
       document.documentElement.setAttribute("data-theme", "dark");
@@ -24,7 +36,7 @@ function App() {
   return (
     <>
       <Preloader />
-      <Home darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <Home darkMode={darkMode} toggleDarkMode={toggleDarkMode} showNav={showNav} />
     </>
   );
 }

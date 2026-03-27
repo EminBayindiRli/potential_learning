@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import logo from "../../assets/logo.png";
 
-function Navbar({ darkMode, toggleDarkMode }) {
+function Navbar({ darkMode, toggleDarkMode, showNav }) {
   const { t, i18n } = useTranslation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -16,7 +17,6 @@ function Navbar({ darkMode, toggleDarkMode }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (langRef.current && !langRef.current.contains(event.target)) {
@@ -49,18 +49,26 @@ function Navbar({ darkMode, toggleDarkMode }) {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-        scrolled ? "glass-effect py-3 shadow-md" : "bg-transparent py-5"
+      className={`fixed left-0 right-0 z-[1000] transition-all duration-700 ease-out ${
+        scrolled
+          ? "top-0 rounded-2xl mx-4 sm:mx-6 mt-4 py-2 sm:py-3 shadow-[0_6px_16px_rgba(0,0,0,0.1)]"
+          : "top-0 bg-transparent py-4 sm:py-5"
+      } ${
+        showNav ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
       }`}
+      style={{
+        backgroundColor: scrolled
+          ? (darkMode ? '#162119' : '#FFFFFF')
+          : 'transparent',
+        boxShadow: scrolled && darkMode ? 'none' : undefined,
+      }}
     >
-      <div className="mx-auto flex max-w-container items-center justify-between px-6 lg:px-8">
+      <div className="mx-auto flex max-w-container items-center justify-between px-4 sm:px-6 lg:px-8 relative">
         {/* Logo */}
-        <a href="#home" className="group flex items-center gap-3">
-          <div className="icon-glow flex h-10 w-10">
-            <i className="ri-plant-line text-xl" />
-          </div>
+        <a href="#home" className="group flex items-center gap-2 sm:gap-3 z-10">
+          <img src={logo} alt="Potential logo" className="h-8 w-8 sm:h-10 sm:w-10 rounded-lg object-contain" />
           <div>
-            <p className="text-xl font-bold tracking-tight text-gradient">
+            <p className="text-lg sm:text-xl font-bold tracking-tight text-[var(--primary-green)]">
               POTENTIAL
             </p>
             <p className="hidden text-xs text-[var(--text-gray)] sm:block">
@@ -69,37 +77,34 @@ function Navbar({ darkMode, toggleDarkMode }) {
           </div>
         </a>
 
-        {/* Desktop Nav */}
-        <nav className="hidden items-center gap-1 md:flex">
+        {/* Desktop Nav — Centered */}
+        <nav className="hidden lg:flex items-center justify-center gap-8 absolute left-1/2 transform -translate-x-1/2">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="relative rounded-lg px-4 py-2 text-sm font-medium text-[var(--text-gray)] transition-colors hover:text-[var(--primary-green)]"
+              className="text-[14px] font-medium text-[var(--neutral-black)] transition-colors duration-150 hover:text-[#6B8F47] whitespace-nowrap"
             >
               {link.label}
-              <span className="absolute bottom-0 left-1/2 h-0.5 w-0 -translate-x-1/2 rounded-full bg-[var(--primary-green)] transition-all duration-300 hover:w-3/4 opacity-0 hover:opacity-100" />
             </a>
           ))}
         </nav>
 
         {/* Right Actions */}
-        <div className="flex items-center gap-3">
-          
-          {/* Language Switcher Dropdown */}
+        <div className="flex items-center gap-2 sm:gap-3 z-10">
+          {/* Language Switcher */}
           <div className="relative" ref={langRef}>
             <button
               onClick={() => setLangOpen(!langOpen)}
-              className="icon-glow flex h-10 w-auto min-w-[3rem] px-2 items-center gap-1 !rounded-lg"
+              className="flex h-8 sm:h-10 w-auto min-w-[2.5rem] sm:min-w-[3rem] px-2 sm:px-3 items-center gap-1 sm:gap-1.5 rounded-full border border-[var(--light-gray)] bg-[var(--section-background)] text-[var(--neutral-black)] transition-all duration-200 hover:border-[var(--primary-green)]"
               aria-label="Change Language"
             >
-              <i className="ri-global-line text-[15px]" />
-              <span className="text-xs font-bold leading-none">{currentLang}</span>
+              <i className="ri-global-line text-sm sm:text-[15px]" />
+              <span className="text-[10px] sm:text-xs font-semibold leading-none">{currentLang}</span>
             </button>
-            
-            {/* Dropdown Menu */}
-            <div 
-              className={`absolute right-0 mt-2 w-36 origin-top-right overflow-hidden rounded-xl border border-[var(--light-gray)] bg-[var(--background-white)]/95 p-1 px-1 shadow-lg backdrop-blur-md transition-all duration-200 ${
+
+            <div
+              className={`absolute right-0 mt-2 w-36 origin-top-right overflow-hidden rounded-xl border border-[var(--light-gray)] bg-[var(--background-white)] p-1 shadow-lg transition-all duration-200 ${
                 langOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"
               }`}
             >
@@ -122,10 +127,10 @@ function Navbar({ darkMode, toggleDarkMode }) {
           <button
             type="button"
             onClick={toggleDarkMode}
-            className="icon-glow flex h-10 w-10 !rounded-lg"
+            className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-[var(--light-gray)] bg-[var(--section-background)] text-[var(--neutral-black)] transition-all duration-200 hover:border-[var(--primary-green)]"
             aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
           >
-            <i className={`text-lg transition-transform duration-300 ${darkMode ? "ri-sun-line rotate-90" : "ri-moon-line -rotate-90"}`} />
+            <i className={`text-sm sm:text-lg transition-transform duration-300 ${darkMode ? "ri-sun-line rotate-90" : "ri-moon-line -rotate-90"}`} />
           </button>
 
           {/* CTA Button */}
@@ -133,9 +138,8 @@ function Navbar({ darkMode, toggleDarkMode }) {
             href="https://dev.d23ggi28ujjgg2.amplifyapp.com/"
             target="_blank"
             rel="noreferrer"
-            className="btn-premium hidden gap-2 sm:inline-flex"
+            className="btn-outline hidden gap-2 sm:inline-flex !py-2 !px-5 text-[13px]"
           >
-            <i className="ri-external-link-line text-sm" />
             <span className="whitespace-nowrap">{t("navbar.goToPanel_desktop")}</span>
           </a>
 
@@ -143,27 +147,27 @@ function Navbar({ darkMode, toggleDarkMode }) {
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="icon-glow flex h-10 w-10 !rounded-lg md:hidden"
+            className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full border border-[var(--light-gray)] bg-[var(--section-background)] text-[var(--neutral-black)] lg:hidden"
             aria-label="Toggle menu"
           >
-            <i className={`text-xl transition-transform duration-300 ${mobileOpen ? "ri-close-line rotate-90" : "ri-menu-line"}`} />
+            <i className={`text-lg sm:text-xl transition-transform duration-300 ${mobileOpen ? "ri-close-line rotate-90" : "ri-menu-line"}`} />
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu */}
       <div
-        className={`absolute left-0 right-0 top-full origin-top transform overflow-hidden transition-all duration-300 md:hidden ${
+        className={`absolute left-0 right-0 top-full origin-top transform overflow-hidden transition-all duration-300 lg:hidden ${
           mobileOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
         }`}
       >
-        <div className="glass-effect mx-4 mt-2 flex flex-col gap-1 rounded-2xl p-4 shadow-xl border border-[var(--light-gray)]">
+        <div className="mx-4 mt-2 flex flex-col gap-1 rounded-2xl border border-[var(--light-gray)] bg-[var(--background-white)] p-4 shadow-lg">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="rounded-xl px-4 py-3 text-sm font-medium text-[var(--dark-gray)] transition-all hover:bg-[var(--subtle-green)] hover:text-[var(--primary-green)]"
+              className="rounded-xl px-4 py-3 text-sm font-medium text-[var(--neutral-black)] transition-all hover:bg-[var(--subtle-green)] hover:text-[var(--primary-green)]"
             >
               {link.label}
             </a>
@@ -175,7 +179,6 @@ function Navbar({ darkMode, toggleDarkMode }) {
             rel="noreferrer"
             className="btn-premium w-full justify-center"
           >
-            <i className="ri-external-link-line" />
             {t("navbar.openPanel")}
           </a>
         </div>
