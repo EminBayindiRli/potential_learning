@@ -136,8 +136,14 @@ body {
   /* Icon Container */
   .icon-glow {
     @apply flex items-center justify-center rounded-button transition-all duration-300;
-    background: linear-gradient(135deg, rgba(90, 125, 58, 0.15), rgba(90, 125, 58, 0.05));
-    border: 1px solid rgba(90, 125, 58, 0.2);
+    background: var(--subtle-green);
+    border: 1px solid rgba(90, 125, 58, 0.25);
+    color: var(--primary-green-dark);
+  }
+
+  [data-theme="dark"] .icon-glow {
+    background: linear-gradient(135deg, rgba(123, 163, 82, 0.3), rgba(123, 163, 82, 0.15));
+    border: 1px solid rgba(123, 163, 82, 0.35);
     color: var(--primary-green);
   }
 

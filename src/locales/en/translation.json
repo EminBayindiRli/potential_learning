@@ -37,13 +37,13 @@
     "desc2": "The platform focuses on productivity and quality analysis, helping users read field-level insights and translate complex agricultural signals into more understandable outputs.",
     "cta": "See how it works",
     "feat1_title": "Satellite Monitoring",
-    "feat1_desc": "Track field variability and vegetation-related insights across different locations.",
+    "feat1_title_desc": "Track field variability and vegetation-related insights across different locations.",
     "feat2_title": "Drone-Based Views",
-    "feat2_desc": "Add closer visual support for understanding plant and field conditions.",
+    "feat2_title_desc": "Add closer visual support for understanding plant and field conditions.",
     "feat3_title": "Productivity Analysis",
-    "feat3_desc": "Review indicators connected to field performance and expected outcomes.",
+    "feat3_title_desc": "Review indicators connected to field performance and expected outcomes.",
     "feat4_title": "Quality Support",
-    "feat4_desc": "Understand how analysis outputs can support quality-related interpretation."
+    "feat4_title_desc": "Understand how analysis outputs can support quality-related interpretation."
   },
   "howTo": {
     "badge": "Usage Guide",
@@ -96,6 +96,7 @@
     "title_start": "Any questions? ",
     "title_end": "We got ",
     "title_highlight": "answers.",
+    "title_end_tr": "",
     "desc": "If you can't find what you're looking for, feel free to reach out to our support team directly from the Potential panel.",
     "btnPanel": "Go to Panel",
     "q1": "What is Potential?",

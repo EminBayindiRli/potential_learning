@@ -48,7 +48,7 @@ function VideoSection() {
               {/* Media Container with custom play overlay */}
               <div className="relative aspect-video w-full overflow-hidden bg-[var(--neutral-black)] rounded-t-card-lg">
                 <iframe
-                  className="absolute inset-0 h-full w-full opacity-90 transition-opacity duration-500 group-hover:opacity-100 mix-blend-screen"
+                  className="absolute inset-0 h-full w-full opacity-90 transition-opacity duration-500 group-hover:opacity-100"
                   src={video.embedUrl}
                   title={video.title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

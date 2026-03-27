@@ -20,7 +20,7 @@ function HeroSection() {
         {/* Left: Text Content */}
         <div className="flex max-w-2xl flex-col items-start pt-10 animate-fade-in-up">
           {/* Badge */}
-          <div className="mb-8 inline-flex items-center gap-2 rounded-badge border border-[var(--primary-green-light)] bg-white/50 px-5 py-2.5 text-sm font-bold text-[var(--primary-green)] shadow-sm backdrop-blur-md dark:bg-black/20">
+          <div className="mb-8 inline-flex items-center gap-2 rounded-badge border border-[var(--primary-green-light)] bg-[var(--background-white)]/50 px-5 py-2.5 text-sm font-bold text-[var(--primary-green)] shadow-sm backdrop-blur-md">
             <span className="relative flex h-3 w-3">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--primary-green)] opacity-75"></span>
               <span className="relative inline-flex h-3 w-3 rounded-full bg-[var(--primary-green)]"></span>
@@ -58,8 +58,8 @@ function HeroSection() {
           {/* Feature Pills */}
           <div className="mt-14 flex w-full flex-wrap gap-4 border-t border-[var(--light-gray)] pt-8">
             {[
-              { icon: "ri-satellite-line", text: t("hero.featSatellite") },
-              { icon: "ri-drone-line", text: t("hero.featDrone") },
+              { icon: "ri-radar-line", text: t("hero.featSatellite") },
+              { icon: "ri-flight-land-line", text: t("hero.featDrone") },
               { icon: "ri-line-chart-line", text: t("hero.featData") },
             ].map((feat, i) => (
               <div key={i} className="flex items-center gap-2 text-sm font-semibold text-[var(--text-gray)]">
@@ -87,23 +87,23 @@ function HeroSection() {
             </div>
 
             {/* Floating verification badge */}
-            <div className="absolute -left-6 bottom-12 z-20 animate-float rounded-2xl border border-white/20 bg-white/90 p-4 shadow-card-lg backdrop-blur-md dark:border-white/10 dark:bg-black/80">
+            <div className="absolute -left-6 bottom-12 z-20 animate-float rounded-2xl border border-[var(--light-gray)] p-4 shadow-card-lg backdrop-blur-md" style={{ backgroundColor: 'var(--section-background)' }}>
               <div className="flex items-center gap-4">
                 <div className="icon-glow h-12 w-12 !rounded-xl">
                   <i className="ri-shield-check-fill text-2xl" />
                 </div>
                 <div>
                   <p className="text-sm font-bold text-[var(--neutral-black)]">{t("hero.badgeVerifiedTitle")}</p>
-                  <p className="text-xs font-medium text-[var(--text-gray)]">{t("hero.badgeVerifiedSub")}</p>
+                  <p className="text-xs font-medium text-[var(--neutral-black)] opacity-70">{t("hero.badgeVerifiedSub")}</p>
                 </div>
               </div>
             </div>
 
             {/* Floating stats badge */}
-            <div className="absolute -right-6 top-12 z-20 animate-float rounded-2xl border border-white/20 bg-white/90 p-4 shadow-card-lg backdrop-blur-md dark:border-white/10 dark:bg-black/80" style={{ animationDelay: "1.5s" }}>
+            <div className="absolute -right-6 top-12 z-20 animate-float rounded-2xl border border-[var(--light-gray)] p-4 shadow-card-lg backdrop-blur-md" style={{ animationDelay: "1.5s", backgroundColor: 'var(--section-background)' }}>
               <div className="flex items-center gap-3">
                 <div className="flex flex-col">
-                  <p className="text-sm font-medium text-[var(--text-gray)]">{t("hero.badgeAccuracyTitle")}</p>
+                  <p className="text-sm font-medium text-[var(--neutral-black)] opacity-70">{t("hero.badgeAccuracyTitle")}</p>
                   <p className="text-xl font-bold text-[var(--primary-green)]">99.8%</p>
                 </div>
                 <i className="ri-bar-chart-grouped-line text-3xl text-[var(--accent-green)] opacity-50" />

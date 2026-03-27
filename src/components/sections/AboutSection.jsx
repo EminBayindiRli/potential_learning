@@ -5,7 +5,7 @@ function AboutSection() {
 
   const features = [
     {
-      icon: "ri-satellite-line",
+      icon: "ri-radar-line",
       title: t("about.feat1_title"),
       desc: t("about.feat1_title_desc"),
     },

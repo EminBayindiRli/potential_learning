@@ -108,7 +108,7 @@ function Footer() {
           <p className="text-sm font-medium text-[var(--text-gray)]">
             {t("footer.copyright")}
           </p>
-          <div className="flex items-center gap-3 rounded-full border border-[var(--light-gray)] bg-white px-4 py-1.5 shadow-sm dark:bg-[var(--section-background)]">
+          <div className="flex items-center gap-3 rounded-full border border-[var(--light-gray)] bg-[var(--background-white)] px-4 py-1.5 shadow-sm">
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--primary-green)] opacity-75"></span>
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[var(--primary-green)]"></span>

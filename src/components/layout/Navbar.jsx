@@ -99,7 +99,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
             
             {/* Dropdown Menu */}
             <div 
-              className={`absolute right-0 mt-2 w-36 origin-top-right overflow-hidden rounded-xl border border-[var(--light-gray)] bg-white/95 p-1 px-1 shadow-lg backdrop-blur-md transition-all duration-200 dark:bg-[#121c15]/95 ${
+              className={`absolute right-0 mt-2 w-36 origin-top-right overflow-hidden rounded-xl border border-[var(--light-gray)] bg-[var(--background-white)]/95 p-1 px-1 shadow-lg backdrop-blur-md transition-all duration-200 ${
                 langOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"
               }`}
             >

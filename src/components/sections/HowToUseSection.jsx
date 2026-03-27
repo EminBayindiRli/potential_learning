@@ -16,7 +16,7 @@ function HowToUseSection() {
       <div className="mx-auto max-w-container px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center mb-20 animate-fade-in-up">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--light-gray)] bg-white/60 px-5 py-2.5 text-sm font-bold shadow-sm backdrop-blur-md dark:bg-black/40">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--light-gray)] bg-[var(--background-white)]/60 px-5 py-2.5 text-sm font-bold shadow-sm backdrop-blur-md">
             <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--subtle-green)] text-[var(--primary-green)]">
               <i className="ri-compass-3-line" />
             </span>
